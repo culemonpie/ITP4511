@@ -12,6 +12,13 @@ import java.io.Serializable;
  * @author op7
  */
 public class User implements Serializable {
+    
+    enum Role{
+	STUDENT,
+	TECHNICIAN,
+	SENIOR_TECHNICIAN;
+    }
+    
     private String username;
     private String password;
     private int id;
