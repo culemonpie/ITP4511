@@ -7,6 +7,7 @@ package ivpet.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,13 +38,18 @@ public class InventoryViewServlet extends HttpServlet {
 
 	    //Obtain the id
 	    String id = request.getParameter("id");
-	    if (id != null){
-		
-	    } else{
-		
+
+	    request.setAttribute("id", id);
+	    String url = "/inventory/view.jsp";
+	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+	    dispatcher.forward(request, response);
+
+	    if (id != null) {
+
+	    } else {
+
 	    }
-	    
-	    
+
 	}
     }
 
