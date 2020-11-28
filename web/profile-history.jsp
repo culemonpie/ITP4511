@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 
+<%
+    String title = "Checkout history";
+%>
+
 <jsp:include page="/WEB-INF/header.jsp">  
-    <jsp:param name="title" value="Home" />
+    <jsp:param name="title" value="<%=title%>" />
 </jsp:include>
 <div class="py-2">
     <div class="container">
@@ -36,7 +40,7 @@
 		</ul>
 	    </div>
 	    <div class="col-md-9">
-		<h1> Checked out </h1>
+		<h1> <%=title%> </h1>
 
 		<table class="table">
 		    <tr>

@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-
+<%
+    String title = (String)request.getAttribute("title");
+    if (title == null){
+	title = "List inventory";
+    }
+%>
 <jsp:include page="/WEB-INF/header.jsp">  
-    <jsp:param name="title" value="Home" />
+    <jsp:param name="title" value="<%=title%>" />
 </jsp:include>
 <div class="py-3">
     <div class="container">
 	<div class="row">
 	    <div class="col-12">
-		<h2 class="">IVPET <small class="text-muted">Equipment Borrowing System</small></h2>
-		<input type="text" class="form-control" placeholder='Enter search keyword...'>
-		<hr>
-		<table class="table">
+		<h2><%=title%></h2>
+		<table class="table table-extra-condensed">
 		    <tr>
 			<th>ID</th>
-			<th>Description</th>
+			<th>Name</th>
+			<th>Availability</th>
 		    </tr>
-		    <%
-
-			String[] items = {"3M Protection gear", "Red Brick", "Molotov bomb", "Water barricade", "Tear gas"};
+		    <%			String[] items = {"3M Protection gear", "Red Brick", "Molotov bomb", "Water barricade", "Tear gas"};
 			for (int i = 0; i < items.length; i++) {
 			    String item = items[i];
 			    String msg = String.format("<tr><td><a href='%s/inventory/view?id=%d'>%d</td><td>%s</td><td><a href='#' class='btn btn-success'>Add</a></td>", request.getContextPath(), i, i, item);

@@ -3,10 +3,11 @@
 
 <%
     String message = (String) request.getAttribute("message");
+    String title = "Login";
 %>
 
 <jsp:include page="/WEB-INF/header.jsp">  
-    <jsp:param name="title" value="Home" />
+    <jsp:param name="title" value="<%=title%>" />
 </jsp:include>
 <div class="py-3">
     <div class="container">
@@ -16,7 +17,7 @@
 		<ivpet:Alert message="<%=message%>" context="danger" />
 
 
-		<h5>Login</h5>
+		<h5><%=title%></h5>
 		<form class="form-signin" action="loginServlet" method="post">
 		    <div class="form-label-group">
 			<label for="inputEmail">Username</label>

@@ -69,7 +69,7 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 				    <a class="dropdown-item" href="${pageContext.request.contextPath}/profile-checkout.jsp">Checked out</a>
-				    <a class="dropdown-item" href="${pageContext.request.contextPath}/profile-contact.jsp">Reservations</a>
+				    <a class="dropdown-item" href="${pageContext.request.contextPath}/profile-reservation.jsp">Reservations</a>
 				    <a class="dropdown-item" href="${pageContext.request.contextPath}/profile-history.jsp">History</a>
 				    <a class="dropdown-item" href="${pageContext.request.contextPath}/cart.jsp">Cart</a>
 				    <a class="dropdown-item" href="${pageContext.request.contextPath}/profile-contact.jsp">Contact</a>
