@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<jsp:include page="include/header.jsp">
+<jsp:include page="/WEB-INF/header.jsp">  
     <jsp:param name="title" value="Home" />
 </jsp:include>
 <div class="py-2">
@@ -42,7 +42,7 @@
 		<div class="card">
 		    <div class="card-body">
 			<h5>#R0002</h5>
-			<a href="${pageContext.request.contextPath}/inventory/view?id=2">View</a> | <a href="#">Edit</a>
+			<a href="${pageContext.request.contextPath}/reservation/view?id=2">View</a> | <a href="#">Edit</a>
 
 			<div class="row">
 			    <div class="col-12 col-sm-6 col-md-4">
@@ -78,7 +78,7 @@
 		<div class="card mt-2">
 		    <div class="card-body">
 			<h5>#R0001</h5>
-			<a href="${pageContext.request.contextPath}/inventory/view?id=1">View</a> | <a href="#">Edit</a>
+			<a href="${pageContext.request.contextPath}/reservation/view?id=1">View</a> | <a href="#">Edit</a>
 
 			<div class="row">
 			    <div class="col-12 col-sm-6 col-md-4">
@@ -123,4 +123,4 @@
 	</div>
     </div>
 
-</div><jsp:include page="include/footer.jsp" />  
+</div><jsp:include page="/WEB-INF/footer.jsp" />          

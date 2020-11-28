@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<jsp:include page="include/header.jsp">
+<jsp:include page="/WEB-INF/header.jsp">  
     <jsp:param name="title" value="Page not found" />
 </jsp:include>
 <div class="py-3">
@@ -15,4 +15,4 @@
 	</div>
     </div>
 </div>
-<jsp:include page="include/footer.jsp" />  
+<jsp:include page="/WEB-INF/footer.jsp" />          

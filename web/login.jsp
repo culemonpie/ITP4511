@@ -1,6 +1,11 @@
 <!DOCTYPE html>
+<%@ taglib uri="/WEB-INF/tlds/ivpet_tags.tld" prefix="ivpet" %>
 
-<jsp:include page="include/header.jsp">
+<%
+    String message = (String) request.getAttribute("message");
+%>
+
+<jsp:include page="/WEB-INF/header.jsp">  
     <jsp:param name="title" value="Home" />
 </jsp:include>
 <div class="py-3">
@@ -8,14 +13,7 @@
 	<div class="row">
 	    <div class="col-12 col-md-6 mx-auto">
 
-		<%
-		    String error_message = (String) request.getAttribute("error_message");
-		    if (error_message != null) {
-			String error_message_html = String.format("<div class='alert alert-danger'>%s</div>", error_message);
-			out.println(error_message_html);
-		    }
-
-		%>
+		<ivpet:Alert message="<%=message%>" context="danger" />
 
 
 		<h5>Login</h5>
@@ -37,4 +35,4 @@
 	</div>
     </div>
 </div>
-<jsp:include page="include/footer.jsp" />  
+<jsp:include page="/WEB-INF/footer.jsp" />          

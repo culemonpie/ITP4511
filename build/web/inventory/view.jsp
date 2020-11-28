@@ -2,9 +2,9 @@
 
 <%
     String id = (String) request.getAttribute("id");
-    String title = "View reservation - #" + id;
+    String title = (String) request.getAttribute("title");
 %>
-<jsp:include page="../include/header.jsp">
+<jsp:include page="/WEB-INF/header.jsp">  
     <jsp:param name="title" value="<%=title%>" />
 </jsp:include>
 <div class="py-3">
@@ -13,57 +13,51 @@
 	    <div class="col-12">
 
 		<h4><%=title%></h4>
-		<a href="${pageContext.request.contextPath}/profile-reservation.jsp" class="btn btn-primary">Return</a>
+
+		<a href="${pageContext.request.contextPath}/inventory/list.jsp" class="btn btn-default">Return</a>
+		<!-- todo: Technician only -->
+		<a href="${pageContext.request.contextPath}/inventory/update?id=<%=id%>" class="btn btn-primary">Edit</a>
 
 		<div class="row">
 		    <div class="col-12 col-sm-6 col-md-4">
-			Reservation ID
+			Name
 		    </div>
 		    <div class="col-12 col-sm-6 col-md-8">
-			ID
-		    </div>
-		</div>
-
-		<div class="row">
-		    <div class="col-12 col-sm-6 col-md-4">
-			Items
-		    </div>
-		    <div class="col-12 col-sm-6 col-md-8">
-			Brick<br>
-			Glass Bottle<br>
-			White Powder<br>
-			Water-fille barrier<br>
+			HDMI Cable
 		    </div>
 		</div>
 
 		<div class="row">
 		    <div class="col-12 col-sm-6 col-md-4">
-			User
+			Status
 		    </div>
 		    <div class="col-12 col-sm-6 col-md-8">
-			LunchGor
+			Available
 		    </div>
 		</div>
 
 		<div class="row">
 		    <div class="col-12 col-sm-6 col-md-4">
-			Submitted Time
+			Description
 		    </div>
 		    <div class="col-12 col-sm-6 col-md-8">
-			2020-08-25 10:06
+			An HDMI cable connecting visual devices to processing devices.
 		    </div>
 		</div>
-		
-		<div class="row mt-2">
-		    <div class="col-12">
-		    <a href="#" class="btn btn-success">Approve</a>
-		    <a href="#" class="btn btn-danger ml-1">Reject</a>
-		    <a href="#" class="btn btn-info ml-1">Cancel</a>
+
+		<div class="row">
+		    <div class="col-12 col-sm-6 col-md-4">
+			Tags
+		    </div>
+		    <div class="col-12 col-sm-6 col-md-8">
+			<a href="#" class="badge badge-primary">Video</a> 
+			<a href="#" class="badge badge-primary">Accessories</a>
 		    </div>
 		</div>
+
 
 	    </div>
 	</div>
     </div>
 </div>
-<jsp:include page="../include/footer.jsp" />  
+<jsp:include page="/WEB-INF/footer.jsp" />  

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  * @author op7
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/loginServlet"})
-public class LoginServlet extends HttpServlet {
+public class LoginServlet extends AbstractServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,6 +36,12 @@ public class LoginServlet extends HttpServlet {
 	if (username.equals("demo") && password.equals("demoPassword")) {
 	    HttpSession session = request.getSession();
 	    session.setAttribute("username", username);
+	    session.setAttribute("role", 1);
+	    password_match = true;
+	} else if (username.equals("admin") && password.equals("admin")) {
+	    HttpSession session = request.getSession();
+	    session.setAttribute("username", username);
+	    session.setAttribute("role", 3);
 	    password_match = true;
 	} else {
 	    password_match = false;
@@ -74,10 +80,10 @@ public class LoginServlet extends HttpServlet {
 	    // Otherwise, prompt an error.
 	    if (is_valid) {
 		response.sendRedirect(request.getContextPath() + "/welcome.jsp");
-		
+
 	    } else {
 		error_message = String.format("Password: %s<br>", password);
-		request.setAttribute("error_message", error_message);
+		request.setAttribute("message", error_message);
 		String url = "/login.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		dispatcher.forward(request, response);

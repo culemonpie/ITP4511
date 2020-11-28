@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author op7
  */
-@WebServlet(name = "InventoryViewServlet", urlPatterns = {"/inventory/view"})
-public class InventoryViewServlet extends AbstractServlet {
+@WebServlet(name = "ReservationViewServlet", urlPatterns = {"/reservation/view"})
+public class ReservationViewServlet extends AbstractServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,9 +41,9 @@ public class InventoryViewServlet extends AbstractServlet {
 	    
 	    
 
-	    request.setAttribute("title", String.format("View inventory #%s", id));
+	    request.setAttribute("title", String.format("View reservation #%s", id));
 	    request.setAttribute("id", id);
-	    String url = "/inventory/view.jsp";
+	    String url = "/reservation/view.jsp";
 	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 	    dispatcher.forward(request, response);
 
@@ -83,6 +83,12 @@ public class InventoryViewServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
+	//todo: Samuel please work on the messages here
+	String message = (String)request.getParameter("action");
+	request.setAttribute("message", message);
+	
+	
+	//do not change
 	processRequest(request, response);
     }
 

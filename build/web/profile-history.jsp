@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<jsp:include page="include/header.jsp">
+<jsp:include page="/WEB-INF/header.jsp">  
     <jsp:param name="title" value="Home" />
 </jsp:include>
 <div class="py-2">
@@ -87,4 +87,4 @@
 	</div>
     </div>
 
-</div><jsp:include page="include/footer.jsp" />  
+</div><jsp:include page="/WEB-INF/footer.jsp" />          

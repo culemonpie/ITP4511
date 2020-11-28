@@ -7,7 +7,6 @@ package ivpet.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +17,27 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author op7
  */
-@WebServlet(name = "InventoryViewServlet", urlPatterns = {"/inventory/view"})
-public class InventoryViewServlet extends AbstractServlet {
+public abstract class AbstractServlet extends HttpServlet {
+
+    private String errorMessage;
+
+    private String title;
+
+    public String getErrorMessage() {
+	return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+	this.errorMessage = errorMessage;
+    }
+    
+    public String getTitle() {
+	return title;
+    }
+
+    public void setTitle(String title) {
+	this.title = title;
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,25 +53,15 @@ public class InventoryViewServlet extends AbstractServlet {
 	response.setContentType("text/html;charset=UTF-8");
 	try (PrintWriter out = response.getWriter()) {
 	    /* TODO output your page here. You may use following sample code. */
-
-	    //Obtain the id
-	    String id = request.getParameter("id");
-	    
-	    
-
-	    request.setAttribute("title", String.format("View inventory #%s", id));
-	    request.setAttribute("id", id);
-	    String url = "/inventory/view.jsp";
-	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-	    dispatcher.forward(request, response);
-
-	    // todo later
-	    if (id != null) {
-
-	    } else {
-
-	    }
-
+	    out.println("<!DOCTYPE html>");
+	    out.println("<html>");
+	    out.println("<head>");
+	    out.println("<title>Servlet AbstractServlet</title>");
+	    out.println("</head>");
+	    out.println("<body>");
+	    out.println("<h1>Servlet AbstractServlet at " + request.getContextPath() + "</h1>");
+	    out.println("</body>");
+	    out.println("</html>");
 	}
     }
 

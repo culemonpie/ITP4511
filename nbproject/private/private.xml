@@ -11,6 +11,8 @@
             <file>file:/Users/op7/NetBeansProjects/IVPET/src/java/ivpet/servlet/InventoryViewServlet.java</file>
             <file>file:/Users/op7/NetBeansProjects/IVPET/web/welcome.jsp</file>
             <file>file:/Users/op7/NetBeansProjects/IVPET/src/java/ivpet/servlet/LoginServlet.java</file>
+            <file>file:/Users/op7/NetBeansProjects/IVPET/src/java/ivpet/entity/User.java</file>
+            <file>file:/Users/op7/NetBeansProjects/IVPET/web/404.jsp</file>
             <file>file:/Users/op7/NetBeansProjects/IVPET/web/profile-reservation.jsp</file>
             <file>file:/Users/op7/NetBeansProjects/IVPET/web/inventory.jsp</file>
             <file>file:/Users/op7/NetBeansProjects/IVPET/web/login.jsp</file>
@@ -19,6 +21,7 @@
             <file>file:/Users/op7/NetBeansProjects/IVPET/web/resources/css/custom.css</file>
             <file>file:/Users/op7/NetBeansProjects/IVPET/web/profile-history.jsp</file>
             <file>file:/Users/op7/NetBeansProjects/IVPET/web/cart.jsp</file>
+            <file>file:/Users/op7/NetBeansProjects/IVPET/web/profile-checkout.jsp</file>
             <file>file:/Users/op7/NetBeansProjects/IVPET/web/WEB-INF/web.xml</file>
             <file>file:/Users/op7/NetBeansProjects/IVPET/web/inventory/view.jsp</file>
         </group>

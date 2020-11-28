@@ -18,8 +18,14 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author op7
  */
-@WebServlet(name = "InventoryViewServlet", urlPatterns = {"/inventory/view"})
-public class InventoryViewServlet extends AbstractServlet {
+@WebServlet(name = "InventoryUpdateServlet", urlPatterns = {"/inventory/update"})
+/**
+ * Code: 3.3
+ * Who can access: Technicians
+ * Description: Technicians updating
+*/
+
+public class InventoryUpdateServlet extends AbstractServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,9 +47,9 @@ public class InventoryViewServlet extends AbstractServlet {
 	    
 	    
 
-	    request.setAttribute("title", String.format("View inventory #%s", id));
+	    request.setAttribute("title", String.format("Update inventory #%s", id));
 	    request.setAttribute("id", id);
-	    String url = "/inventory/view.jsp";
+	    String url = "/inventory/update.jsp";
 	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 	    dispatcher.forward(request, response);
 
@@ -83,6 +89,8 @@ public class InventoryViewServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
+	String message_text = "有嘢衰咗";
+	request.setAttribute("message", message_text);
 	processRequest(request, response);
     }
 
