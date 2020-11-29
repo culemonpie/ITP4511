@@ -14,7 +14,7 @@
 	    <form action="${pageContext.request.contextPath}/analytic/borrowrecords" target="_blank">
 		<div class="col-12">
 		    <h2><%=title%></h2>
-		    <a href="#" class="btn btn-primary">Create</a>
+		    <a href="${pageContext.request.contextPath}/user/create.jsp" class="btn btn-primary">Create</a>
 		    <button type="submit" class="btn btn-default">
 			<i class="fa fa-print"> </i>
 			Print outstanding records

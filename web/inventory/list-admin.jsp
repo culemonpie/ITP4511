@@ -17,12 +17,12 @@
 		    <tr>
 			<th>ID</th>
 			<th>Name</th>
-			<th>Availability</th>
+			<th>Actions</th>
 		    </tr>
-		    <%			String[] items = {"Surgical mask", "COVID-19 test bottle", "N95", "Syringe", "Pen", "HDMI Cable", "Chalk"};
+		    <%			String[] items = {"3M Protection gear", "Red Brick", "Molotov bomb", "Water barricade", "Tear gas"};
 			for (int i = 0; i < items.length; i++) {
 			    String item = items[i];
-			    String msg = String.format("<tr><td><a href='%s/inventory/view?id=%d'>%d</td><td>%s</td><td><a href='#' class='btn btn-success'>Add</a></td>", request.getContextPath(), i, i, item);
+			    String msg = String.format("<tr><td><a href='%s/inventory/view?id=%d'>%d</td><td>%s</td><td><a href='%s/inventory/update?id=%d' class='btn btn-default'>Update</a></td>", request.getContextPath(), i, i, item,request.getContextPath(), i);
 			    out.println(msg);
 			}
 		    %>

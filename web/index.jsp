@@ -13,9 +13,9 @@
 		<table class="table">
 		    <%
 
-			String[] items = {"3M Protection gear", "Red Brick", "Molotov bomb", "Water barricade", "Tear gas"};
+			String[] items = {"Surgical mask", "COVID-19 test bottle", "N95", "Syringe", "Pen", "HDMI Cable", "Chalk"};
 			for (String item : items) {
-			    String msg = String.format("<tr><td>%s</td><td><a href='#' class='btn btn-success'>Add</a></td>", item);
+			    String msg = String.format("<tr><td>%s</td><td>Medical supplies</td><td><a href='#' class='btn btn-success'>Add</a></td>", item);
 			    out.println(msg);
 			}
 
