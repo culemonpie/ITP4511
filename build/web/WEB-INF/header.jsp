@@ -52,10 +52,10 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 				    <a class="dropdown-item" href="${pageContext.request.contextPath}/inventory/list-admin.jsp">Inventory</a>
-				    <a class="dropdown-item" href="#">Accounts</a>
+				    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/list">Accounts</a>
 				    <a class="dropdown-item" href="#">Lease</a>
 				    <a class="dropdown-item" href="#">Reservations</a>
-				    <a class="dropdown-item" href="#">Overdue records</a>
+				    <a class="dropdown-item" href="${pageContext.request.contextPath}/analytic/overdue.jsp">Overdue records</a>
 				    <a class="dropdown-item" href="#">Tags</a>
 				</div>
 			    </li>
