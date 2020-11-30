@@ -1,5 +1,5 @@
 
-import ivpet.db.CustomerDB;
+import ivpet.db.AssignmentDB;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,7 +16,7 @@ public class test {
         String url="jdbc:derby://localhost:1527/4511";
         String username="APP";
         String password="APP";
-        CustomerDB custDb = new CustomerDB(url,username,password);
-        custDb.createCustTable();
+        AssignmentDB Db = new AssignmentDB(url,username,password);
+Db.addEQUIPMENT("BB", 0, "IS BB");
     }
 }

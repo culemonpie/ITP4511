@@ -12,26 +12,21 @@ package ivpet.bean;
 import java.io.Serializable;
 
 
-public class CustomerBean implements Serializable {
+public class UserBean implements Serializable {
 
-    private String id;
     private String email_address;
     private String password;
     private int type;
 
-    public CustomerBean() {
+    public UserBean() {
     }
 
-    public CustomerBean(String id,String email_address,String password,int type) {
-        this.id=id;
+    public UserBean(String email_address,String password,int type) {
         this.email_address= email_address;
         this.password=password;
         this.type=type;
     }
 
-    public String getid() {
-        return id;
-    }
 
     public String getemail_address() {
         return email_address;
@@ -45,9 +40,7 @@ public class CustomerBean implements Serializable {
         return type;
     }
 
-    public void setid(String v) {
-        id = v;
-    }
+
 
     public void setemail_address(String v) {
         email_address = v;
@@ -62,7 +55,7 @@ public class CustomerBean implements Serializable {
     }
 
     public String toString() {
-        return "ID:" + getid() + "\nemail_address:" + getemail_address() + "\npassword:" + getpassword() + "\ntype:" + gettype();
+        return "email_address:" + getemail_address() + "\npassword:" + getpassword() + "\ntype:" + gettype();
     }
 }
 

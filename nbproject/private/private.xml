@@ -3,29 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/WEB-INF/header.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/500.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/src/java/ivpet/servlet/LogoutServlet.java</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/reservation/view.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/inventory/list.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/src/java/hibernate.cfg.xml</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/src/java/ivpet/servlet/InventoryViewServlet.java</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/welcome.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/src/java/ivpet/servlet/LoginServlet.java</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/src/java/ivpet/entity/User.java</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/src/java/ivpet/servlet/InventoryUpdateServlet.java</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/404.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/profile-reservation.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/login.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/sampleError.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/profile-contact.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/resources/css/custom.css</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/profile-history.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/cart.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/profile-checkout.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/inventory/update.jsp</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/WEB-INF/web.xml</file>
-            <file>file:/Users/op7/NetBeansProjects/IVPET/web/inventory/view.jsp</file>
+            <file>file:/C:/Users/ngkac/Desktop/4511/ITP4511/src/java/test.java</file>
+            <file>file:/C:/Users/ngkac/Desktop/4511/ITP4511/src/java/ivpet/db/CustomerDB.java</file>
+            <file>file:/C:/Users/ngkac/Desktop/4511/ITP4511/src/java/ivpet/bean/CustomerBean.java</file>
         </group>
     </open-files>
 </project-private>
