@@ -121,7 +121,7 @@ public class AssignmentDB {
         return isSuccess;
     }
 
-    public boolean addEQUIPMENT(String name, int Status, String Description, String Tag) {
+    public boolean addequipment(String name, int Status, String Description, String Tag) {
         Connection con = null;
         PreparedStatement pstmt = null;
         boolean isSuccess = false;
@@ -177,5 +177,39 @@ public class AssignmentDB {
         }
         return isSuccess;
     }
+
+    // public ArrayList<UserBean> queryCustByName(String name) {
+    // Connection con = null;
+    // PreparedStatement pstmt = null;
+    // UserBean cb = null;
+    // ArrayList<UserBean> arrayList_cb = new ArrayList<UserBean>();
+    // try {
+    // con = getConnection();
+    // String sql = "SELECT * FROM CUSTOMER WHERE name=?";
+    // pstmt = con.prepareStatement(sql);
+    // pstmt.setString(1, name);
+    // ResultSet rs = null;
+    // pstmt.executeQuery();
+    // rs = pstmt.getResultSet();
+    // while (rs.next()) {
+    // cb = new CustomerBean();
+    // cb.setAge(rs.getInt("Age"));
+    // cb.setCustId(rs.getString("CustId"));
+    // cb.setName(rs.getString("name"));
+    // cb.setTel(rs.getString("tel"));
+    // arrayList_cb.add(cb);
+    // }
+    // pstmt.close();
+    // con.close();
+    // } catch (SQLException ex) {
+    // while (ex != null) {
+    // ex.printStackTrace();
+    // ex = ex.getNextException();
+    // }
+    // } catch (IOException ex) {
+    // ex.printStackTrace();
+    // }
+    // return arrayList_cb;
+    // }
 
 }

@@ -12,19 +12,26 @@ import java.io.Serializable;
  * @author ngkac
  */
 public class ReservationRequestBean implements Serializable {
+    private int id;
     private String equipment_id;
     private int submitted_by;
     private int approved_by;
     private int type;
 
-    public ReservationRequestBean() {
-    }
-
-    public ReservationRequestBean(String equipment_id, int submitted_by, int approved_by, int type) {
+    public ReservationRequestBean(int id, String equipment_id, int submitted_by, int approved_by, int type) {
+        this.setId(id);
         this.equipment_id = equipment_id;
         this.submitted_by = submitted_by;
         this.approved_by = approved_by;
         this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getequipment_id() {
