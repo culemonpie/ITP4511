@@ -32,7 +32,7 @@
 		    </button>
 		    <div class="collapse navbar-collapse" id="navbar10">
 			<ul class="navbar-nav ml-auto">
-			    <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/trend.html">Trend</a> </li>
+			    <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/trend.jsp">Trend</a> </li>
 			    <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/inventory/list.jsp">Inventory</a> </li>
 
 			    <%
@@ -54,7 +54,7 @@
 				    <a class="dropdown-item" href="${pageContext.request.contextPath}/inventory/list-admin.jsp">Inventory</a>
 				    <a class="dropdown-item" href="${pageContext.request.contextPath}/user/list">Accounts</a>
 				    <a class="dropdown-item" href="#">Lease</a>
-				    <a class="dropdown-item" href="#">Reservations</a>
+				    <a class="dropdown-item" href="${pageContext.request.contextPath}/reservation/list.jsp">Reservations</a>
 				    <a class="dropdown-item" href="${pageContext.request.contextPath}/analytic/overdue.jsp">Overdue records</a>
 				    <a class="dropdown-item" href="#">Tags</a>
 				</div>
