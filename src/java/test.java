@@ -17,6 +17,6 @@ public class test {
         String username="APP";
         String password="APP";
         AssignmentDB Db = new AssignmentDB(url,username,password);
-Db.addEQUIPMENT("BB", 0, "IS BB");
+System.out.println(Db.listAllEquipment());
     }
 }

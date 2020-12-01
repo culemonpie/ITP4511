@@ -13,16 +13,16 @@ import java.io.Serializable;
 
 public class UserBean implements Serializable {
     private int id;
-    private String email_address;
+    private String username;
     private String password;
     private int type;
 
     public UserBean() {
     }
 
-    public UserBean(int id, String email_address, String password, int type) {
+    public UserBean(int id, String username, String password, int type) {
         this.id = id;
-        this.email_address = email_address;
+        this.username = username;
         this.password = password;
         this.type = type;
     }
@@ -35,8 +35,8 @@ public class UserBean implements Serializable {
         this.id = id;
     }
 
-    public String getemail_address() {
-        return email_address;
+    public String getusername() {
+        return username;
     }
 
     public String getpassword() {
@@ -47,8 +47,8 @@ public class UserBean implements Serializable {
         return type;
     }
 
-    public void setemail_address(String v) {
-        email_address = v;
+    public void setusername(String v) {
+        username = v;
     }
 
     public void setpassword(String v) {
@@ -60,6 +60,6 @@ public class UserBean implements Serializable {
     }
 
     public String toString() {
-        return "email_address:" + getemail_address() + "\npassword:" + getpassword() + "\ntype:" + gettype();
+        return "username:" + getusername() + "\npassword:" + getpassword() + "\ntype:" + gettype();
     }
 }

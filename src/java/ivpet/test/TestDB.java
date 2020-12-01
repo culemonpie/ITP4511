@@ -11,9 +11,10 @@ package ivpet.test;
  */
 public class TestDB {
 
-    public static void main(String[] args) {
-	String url = "jdbc:mysql://192.168.1.15:10002/ivpet";
-	String username = "itp4511";
-	String password = "ivpet";
-    }
+	public static void main(String[] args) {
+		String url = "jdbc:mysql://192.168.1.15:10002/ivpet";
+		String username = "itp4511";
+		String password = "ivpet";
+
+	}
 }

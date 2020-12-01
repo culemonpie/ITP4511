@@ -11,6 +11,9 @@ public class BorrowRecordBean implements Serializable {
     private boolean is_overdue;
     private int approved_by;
 
+    public BorrowRecordBean() {
+    }
+
     public BorrowRecordBean(int id, int status, String checkout_date, String due_date, String return_date,
             boolean is_overdue, int approved_by) {
         this.approved_by = approved_by;

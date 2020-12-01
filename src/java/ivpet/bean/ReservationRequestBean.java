@@ -15,14 +15,15 @@ public class ReservationRequestBean implements Serializable {
     private int id;
     private String equipment_id;
     private int submitted_by;
-    private int approved_by;
     private int type;
 
-    public ReservationRequestBean(int id, String equipment_id, int submitted_by, int approved_by, int type) {
-        this.setId(id);
+    public ReservationRequestBean() {
+    }
+
+    public ReservationRequestBean(int id, String equipment_id, int submitted_by, int type) {
+        this.id = id;
         this.equipment_id = equipment_id;
         this.submitted_by = submitted_by;
-        this.approved_by = approved_by;
         this.type = type;
     }
 
@@ -42,10 +43,6 @@ public class ReservationRequestBean implements Serializable {
         return submitted_by;
     }
 
-    public int getapproved_by() {
-        return approved_by;
-    }
-
     public int gettype() {
         return type;
     }
@@ -56,10 +53,6 @@ public class ReservationRequestBean implements Serializable {
 
     public void setsubmitted_by(int v) {
         submitted_by = v;
-    }
-
-    public void setapproved_by(int v) {
-        approved_by = v;
     }
 
     public void settype(int v) {

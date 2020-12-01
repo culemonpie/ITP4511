@@ -10,6 +10,9 @@ public class EquipmentBean implements Serializable {
     private String Description;
     private String Tag;
 
+    public EquipmentBean() {
+    }
+
     public EquipmentBean(int id, String name, int status, boolean is_listed, String Description, String Tag) {
         this.id = id;
         this.name = name;

@@ -5,6 +5,9 @@
  */
 package ivpet.db;
 
+import ivpet.bean.BorrowRecordBean;
+import ivpet.bean.EquipmentBean;
+import ivpet.bean.ReservationRequestBean;
 /**
  *
  * @author ngkac
@@ -178,38 +181,141 @@ public class AssignmentDB {
         return isSuccess;
     }
 
-    // public ArrayList<UserBean> queryCustByName(String name) {
-    // Connection con = null;
-    // PreparedStatement pstmt = null;
-    // UserBean cb = null;
-    // ArrayList<UserBean> arrayList_cb = new ArrayList<UserBean>();
-    // try {
-    // con = getConnection();
-    // String sql = "SELECT * FROM CUSTOMER WHERE name=?";
-    // pstmt = con.prepareStatement(sql);
-    // pstmt.setString(1, name);
-    // ResultSet rs = null;
-    // pstmt.executeQuery();
-    // rs = pstmt.getResultSet();
-    // while (rs.next()) {
-    // cb = new CustomerBean();
-    // cb.setAge(rs.getInt("Age"));
-    // cb.setCustId(rs.getString("CustId"));
-    // cb.setName(rs.getString("name"));
-    // cb.setTel(rs.getString("tel"));
-    // arrayList_cb.add(cb);
-    // }
-    // pstmt.close();
-    // con.close();
-    // } catch (SQLException ex) {
-    // while (ex != null) {
-    // ex.printStackTrace();
-    // ex = ex.getNextException();
-    // }
-    // } catch (IOException ex) {
-    // ex.printStackTrace();
-    // }
-    // return arrayList_cb;
-    // }
+    public ArrayList<UserBean> listAllUser() {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        UserBean cb = null;
+        ArrayList<UserBean> arrayList_cb = new ArrayList<UserBean>();
+        try {
+            con = getConnection();
+            String sql = "SELECT * FROM USERTABLE ";
+            pstmt = con.prepareStatement(sql);
+            ResultSet rs = null;
+            pstmt.executeQuery();
+            rs = pstmt.getResultSet();
+            while (rs.next()) {
+                cb = new UserBean();
+                cb.setId(rs.getInt("id"));
+                cb.setusername(rs.getString("username"));
+                cb.setpassword(rs.getString("password"));
+                cb.settype(rs.getInt("type"));
+                arrayList_cb.add(cb);
+            }
+            pstmt.close();
+            con.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return arrayList_cb;
+    }
+
+    public ArrayList<EquipmentBean> listAllEquipment() {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        EquipmentBean cb = null;
+        ArrayList<EquipmentBean> arrayList_cb = new ArrayList<EquipmentBean>();
+        try {
+            con = getConnection();
+            String sql = "SELECT * FROM Equipment ";
+            pstmt = con.prepareStatement(sql);
+            ResultSet rs = null;
+            pstmt.executeQuery();
+            rs = pstmt.getResultSet();
+            while (rs.next()) {
+                cb = new EquipmentBean();
+                cb.setid(rs.getInt("id"));
+                cb.setDescription(rs.getString("Description"));
+                cb.setTag(rs.getString("Tag"));
+                cb.setis_listed(rs.getBoolean("is_listed"));
+                cb.setname(rs.getString("name"));
+                cb.setstatus(rs.getInt("status"));
+                arrayList_cb.add(cb);
+            }
+            pstmt.close();
+            con.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return arrayList_cb;
+    }
+
+    public ArrayList<ReservationRequestBean> listAllReservationRequest() {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ReservationRequestBean cb = null;
+        ArrayList<ReservationRequestBean> arrayList_cb = new ArrayList<ReservationRequestBean>();
+        try {
+            con = getConnection();
+            String sql = "SELECT * FROM ReservationRequest ";
+            pstmt = con.prepareStatement(sql);
+            ResultSet rs = null;
+            pstmt.executeQuery();
+            rs = pstmt.getResultSet();
+            while (rs.next()) {
+                cb = new ReservationRequestBean();
+                cb.setId(rs.getInt("id"));
+                cb.setsubmitted_by(rs.getInt("submitted_by"));
+                cb.setequipment_id(rs.getString("equipment_id"));
+                cb.settype(rs.getInt("type"));
+                arrayList_cb.add(cb);
+            }
+            pstmt.close();
+            con.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return arrayList_cb;
+    }
+
+    public ArrayList<BorrowRecordBean> listAllBorrowRecord() {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        BorrowRecordBean cb = null;
+        ArrayList<BorrowRecordBean> arrayList_cb = new ArrayList<BorrowRecordBean>();
+        try {
+            con = getConnection();
+            String sql = "SELECT * FROM BorrowRecordS ";
+            pstmt = con.prepareStatement(sql);
+            ResultSet rs = null;
+            pstmt.executeQuery();
+            rs = pstmt.getResultSet();
+            while (rs.next()) {
+                cb = new BorrowRecordBean();
+                cb.setId(rs.getInt("id"));
+                cb.setStatus(rs.getInt("Status"));
+                cb.setCheckout_date(rs.getString("CHECKOUT_DATE"));
+                cb.setDue_date(rs.getString("Due_date"));
+                cb.setReturn_date(rs.getString("Return_date"));
+                cb.setIs_overdue(rs.getBoolean("Is_overdue"));
+                cb.setApproved_by(rs.getInt("Approved_by"));
+                arrayList_cb.add(cb);
+            }
+            pstmt.close();
+            con.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return arrayList_cb;
+    }
 
 }
