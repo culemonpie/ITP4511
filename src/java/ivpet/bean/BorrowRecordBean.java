@@ -37,7 +37,7 @@ public class BorrowRecordBean implements Serializable {
         this.approved_by = approved_by;
     }
 
-    public boolean isIs_overdue() {
+    public boolean getIs_overdue() {
         return is_overdue;
     }
 
