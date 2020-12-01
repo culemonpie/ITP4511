@@ -13,14 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
  * @author op7
  */
-@WebServlet(name = "AnalyticBorrowRecordServlet", urlPatterns = {"/analytic/borrowrecords"})
-public class AnalyticBorrowRecordServlet extends AbstractServlet {
+@WebServlet(name = "UserViewServlet", urlPatterns = {"/user/view"})
+public class UserViewServlet extends AbstractServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,18 +37,22 @@ public class AnalyticBorrowRecordServlet extends AbstractServlet {
 	    /* TODO output your page here. You may use following sample code. */
 
 	    //Obtain the id
-	    String[] users = request.getParameterValues("user");
+	    String id = request.getParameter("id");
 	    
-	    ArrayList<String> records = new ArrayList();
-	    for (String user: users){
-		records.add("user" + (int)(Math.random()*5) );
-	    }
 	    
-	    request.setAttribute("records", records);
-	    String url = "/analytic/borrowrecords.jsp";
+
+	    request.setAttribute("title", String.format("View inventory #%s", id));
+	    request.setAttribute("id", id);
+	    String url = "/user/view.jsp";
 	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 	    dispatcher.forward(request, response);
 
+	    // todo later
+	    if (id != null) {
+
+	    } else {
+
+	    }
 
 	}
     }

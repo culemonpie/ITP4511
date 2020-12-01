@@ -19,7 +19,7 @@
 			<th>Name</th>
 			<th>Availability</th>
 		    </tr>
-		    <%			String[] items = {"3M Protection gear", "Red Brick", "Molotov bomb", "Water barricade", "Tear gas"};
+		    <%			String[] items = {"Surgical mask", "COVID-19 test bottle", "N95", "Syringe", "Pen", "HDMI Cable", "Chalk"};
 			for (int i = 0; i < items.length; i++) {
 			    String item = items[i];
 			    String msg = String.format("<tr><td><a href='%s/inventory/view?id=%d'>%d</td><td>%s</td><td><a href='#' class='btn btn-success'>Add</a></td>", request.getContextPath(), i, i, item);

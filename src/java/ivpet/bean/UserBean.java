@@ -12,16 +12,17 @@ package ivpet.bean;
 import java.io.Serializable;
 
 public class UserBean implements Serializable {
+
     private int id;
     private String username;
     private String password;
     private int type;
 
     public UserBean() {
+
     }
 
-    public UserBean(int id, String username, String password, int type) {
-        this.id = id;
+    public UserBean(String username, String password, int type) {
         this.username = username;
         this.password = password;
         this.type = type;
@@ -35,31 +36,28 @@ public class UserBean implements Serializable {
         this.id = id;
     }
 
-    public String getusername() {
+    public String getUsername() {
         return username;
     }
 
-    public String getpassword() {
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
         return password;
     }
 
-    public int gettype() {
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getType() {
         return type;
     }
 
-    public void setusername(String v) {
-        username = v;
+    public void setType(int type) {
+        this.type = type;
     }
 
-    public void setpassword(String v) {
-        password = v;
-    }
-
-    public void settype(int v) {
-        type = v;
-    }
-
-    public String toString() {
-        return "username:" + getusername() + "\npassword:" + getpassword() + "\ntype:" + gettype();
-    }
 }
