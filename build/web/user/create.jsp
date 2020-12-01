@@ -43,10 +43,10 @@
 
 		    <div class="row mt-1">
 			<div class="col-12 col-sm-6 col-md-4">
-			    Role
+			    Type
 			</div>
 			<div class="col-12 col-sm-6 col-md-8">
-			    <select name="role" class="form-control" required>
+			    <select name="type" class="form-control" required>
 				<option value="1" selected>Student</option>
 				<option value="2" selected>Technician</option>
 				<option value="3" selected>Senior Technician</option>

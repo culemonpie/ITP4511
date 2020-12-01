@@ -14,11 +14,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ivpet.bean.UserBean;
+
 /**
  *
  * @author op7
  */
-@WebServlet(name = "UserListServlet", urlPatterns = {"/user/list"})
+@WebServlet(name = "UserCreateServlet", urlPatterns = {"/user/createServlet"})
 public class UserCreateServlet extends AbstractServlet {
 
     /**
@@ -37,9 +39,16 @@ public class UserCreateServlet extends AbstractServlet {
 	    /* TODO output your page here. You may use following sample code. */
 
 	    //Obtain the id
+            
+            out.println("success");
+            
 	    String id = request.getParameter("id");
 	    
-	    
+	    String email = request.getParameter("email");
+	    String password = request.getParameter("password");
+	    int type = Integer.parseInt(request.getParameter("type"));
+            
+            UserBean user = new UserBean(email, password, type);
 
 	    request.setAttribute("title", "List Users");
 	    request.setAttribute("id", id);
