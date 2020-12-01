@@ -31,21 +31,27 @@ public class AddToCartServlet extends AbstractServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	response.setContentType("text/html;charset=UTF-8");
-	try (PrintWriter out = response.getWriter()) {
-	    /**
-	     * get the id of the item
-	     * append that to session.setAttribute(cart)
-	     * add message saying success
-	     * redirect user to the original page
-	     */
-	    
-	    
-//	    }
-	}
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /**
+             * get the id of the item append that to session.setAttribute(cart)
+             * add message saying success redirect user to the original page
+             */
+//            out.println(request.getHeader("referer"));
+//            String id = request.getParameter("id");
+//            request.setAttribute("message", id);
+////            String url = request.getHeader("referer");
+//            String url = "index.jsp";
+//            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+//            dispatcher.forward(request, response);
+////	    }
+            request.setAttribute("message", "Added item to cart");
+            String url = "/index.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,8 +65,8 @@ public class AddToCartServlet extends AbstractServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	processRequest(request, response);
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -73,8 +79,8 @@ public class AddToCartServlet extends AbstractServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	processRequest(request, response);
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -84,7 +90,7 @@ public class AddToCartServlet extends AbstractServlet {
      */
     @Override
     public String getServletInfo() {
-	return "Short description";
+        return "Short description";
     }// </editor-fold>
 
 }
