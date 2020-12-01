@@ -14,12 +14,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ivpet.bean.UserBean;
+import ivpet.db.AssignmentDB;
+
 /**
  *
  * @author op7
  */
-@WebServlet(name = "UserViewServlet", urlPatterns = {"/user/view"})
-public class UserViewServlet extends AbstractServlet {
+@WebServlet(name = "UserUpdateServlet", urlPatterns = {"/user/updateServlet"})
+public class UserUpdateServlet extends AbstractServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +42,20 @@ public class UserViewServlet extends AbstractServlet {
             //Obtain the id
             String id = request.getParameter("id");
 
-            request.setAttribute("title", String.format("View user #%s", id));
-            request.setAttribute("id", id);
+            String username = request.getParameter("username");
+            int type = Integer.parseInt(request.getParameter("type"));
 
-            String url = "/user/view.jsp";
+            AssignmentDB db = new AssignmentDB();
+            UserBean user = db.getUser(Integer.parseInt(id));
+
+            user.setUsername(username);
+            user.setType(type);
+
+            db.editUserRecord(user);
+
+            request.setAttribute("id", id);
+            String url = "/user/view?id=" + id;
+//            String url = "/index.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
             dispatcher.forward(request, response);
 

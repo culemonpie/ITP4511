@@ -20,15 +20,15 @@
 		<h4><%=title%></h4>
 		<form method="POST" action="${pageContext.request.contextPath}/user/createServlet">
 		    <button type="submit" class="btn btn-primary">Create</button>
-		    <a href="${pageContext.request.contextPath}/inventory/view?id=<%=id%>" class="btn btn-default ml-1">Return</a>
+		    <a href="${pageContext.request.contextPath}/user/list.jsp" class="btn btn-default ml-1">Return</a>
 
 
 		    <div class="row">
 			<div class="col-12 col-sm-6 col-md-4">
-			    Email
+			    Username
 			</div>
 			<div class="col-12 col-sm-6 col-md-8">
-			    <input type="email" name="email" value="" class="form-control" required>
+			    <input type="text" name="username" value="" class="form-control" required>
 			</div>
 		    </div>
 

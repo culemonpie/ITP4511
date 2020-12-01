@@ -123,6 +123,7 @@ public class AssignmentDB {
             while (rs.next()) {
                 // If the record exist set the record detail to the customer bean
                 userBean = new UserBean();
+                userBean.setId(Integer.parseInt(rs.getString("id")));
                 userBean.setUsername(rs.getString("Username"));
                 userBean.setPassword(rs.getString("Password"));
                 userBean.setType(Integer.parseInt(rs.getString("type")));
@@ -504,6 +505,39 @@ public class AssignmentDB {
             ex.printStackTrace();
         }
         return arrayList_cb;
+    }
+
+    public UserBean getUser(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        UserBean cb = null;
+        try {
+            connection = getConnection();
+            String sql = "SELECT * FROM USERTABLE WHERE id=?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            ResultSet rs = null;
+            preparedStatement.executeQuery();
+            rs = preparedStatement.getResultSet();
+            while (rs.next()) {
+                cb = new UserBean();
+                cb.setId(rs.getInt("id"));
+                cb.setUsername(rs.getString("username"));
+                cb.setPassword(rs.getString("password"));
+                cb.setType(rs.getInt("type"));
+                break;
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return cb;
     }
 
     public void editUserRecord(UserBean cb) {

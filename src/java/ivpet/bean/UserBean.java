@@ -16,6 +16,7 @@ public class UserBean implements Serializable {
     private int id;
     private String username;
     private String password;
+    private boolean isActive;
     private int type;
 
     public UserBean() {
@@ -56,8 +57,34 @@ public class UserBean implements Serializable {
         return type;
     }
 
+    public String getRole() {
+        String role = "";
+
+        switch (type) {
+            case 1:
+                role = "Student";
+                break;
+            case 2:
+                role = "Technician";
+                break;
+            case 3:
+                role = "Senior Technician";
+                break;
+        }
+
+        return role;
+    }
+
     public void setType(int type) {
         this.type = type;
+    }
+
+    public boolean isIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
 }

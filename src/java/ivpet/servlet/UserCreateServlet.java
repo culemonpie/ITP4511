@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import ivpet.bean.UserBean;
+import ivpet.db.AssignmentDB;
 
 /**
  *
@@ -44,24 +45,20 @@ public class UserCreateServlet extends AbstractServlet {
             
 	    String id = request.getParameter("id");
 	    
-	    String email = request.getParameter("email");
+	    String username = request.getParameter("username");
 	    String password = request.getParameter("password");
 	    int type = Integer.parseInt(request.getParameter("type"));
             
-            UserBean user = new UserBean(email, password, type);
+            AssignmentDB db = new AssignmentDB();
+            db.addUser(username, password, type);
 
-	    request.setAttribute("title", "List Users");
-	    request.setAttribute("id", id);
-	    String url = "/user/list.jsp";
-	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-	    dispatcher.forward(request, response);
+//	    request.setAttribute("title", "List Users");
+//	    request.setAttribute("id", id);
+//	    String url = "/user/list.jsp";
+//	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+//	    dispatcher.forward(request, response);
 
-	    // todo later
-	    if (id != null) {
-
-	    } else {
-
-	    }
+            response.sendRedirect(request.getContextPath() + "/user/list.jsp");
 
 	}
     }
