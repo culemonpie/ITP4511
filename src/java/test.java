@@ -33,8 +33,8 @@ public class test {
         }
 //        db.addUser("adayuen@exampl.com", "jojocat", 3);
         UserBean cb = new UserBean("BB", "CC", 2);
-        EquipmentBean eb = new EquipmentBean(2, "test", 1, true, "Dec", "TAG");
-        ReservationRequestBean rb = new ReservationRequestBean(1, "123", 1, 1);
+//        EquipmentBean eb = new EquipmentBean(2, "test", 1, true, "Dec", "TAG");
+//        ReservationRequestBean rb = new ReservationRequestBean(1, "123", 1, 1);
         BorrowRecordBean bb = new BorrowRecordBean(1, 1, "2020-10-10", "2020-10-10", "2020-10-10", true, 1);
         db.editBorrowRecord(bb);
     }
