@@ -75,7 +75,9 @@
                             Is listed?
                         </div>
                         <div class="col-12 col-sm-6 col-md-8">
-                            <input type="checkbox" name="is_listed">
+                            <input type="checkbox" name="is_listed"
+                                   <%=equipment.getis_listed()?"checked":""%>
+                                   >
                         </div>
                     </div>
 

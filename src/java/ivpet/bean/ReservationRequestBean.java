@@ -6,6 +6,7 @@
 package ivpet.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.io.Serializable;
  */
 public class ReservationRequestBean implements Serializable {
     private int id;
-    private String equipment_id;
+    private String equipment_id; //??
     private int submitted_by;
     private int type;
 

@@ -72,6 +72,15 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        Is listed?
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-8">
+                        <%=equipment.getis_listed()?"Yes":"No"%>
+                    </div>
+                </div>
+
 
             </div>
         </div>

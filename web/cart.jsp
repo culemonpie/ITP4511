@@ -7,7 +7,9 @@
 
     AssignmentDB db = new AssignmentDB();
     ArrayList<Integer> cart = (ArrayList) session.getAttribute("cart");
-
+    if (cart == null) {
+        cart = new ArrayList();
+    }
 %>
 
 <jsp:include page="/WEB-INF/header.jsp">  
@@ -48,60 +50,43 @@
             <div class="col-md-9">
                 <h1> <%=title%> </h1>
 
-                <ul>
-                    <% for (Integer c : cart) { %>
-                    <li><%=c%></li>
-                    <% } %>
-                </ul>
-
                 <hr>
 
-                Dummy<br>
+                <form action="POST">
+                    <table class="table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Item</th>
+                            <th>Remove</th>
+                        </tr>
+                        <% for (Integer id : cart) {
+                                EquipmentBean equipment = db.getEquipment(id);
+                        %>
+                        <tr>
+                            <td><%=equipment.getid()%></td>
+                            <td><%=equipment.getname()%></td>
+                            <td><input type="checkbox" name="id" value="<%=equipment.getid()%>"></td>
+                        </tr>
+                        <% }%>
 
-                <table class="table">
-                    <tr>
-                        <th>ID</th>
-                        <th>Item</th>
-                        <th>Remove</th>
-                    </tr>
-                    <tr>
-                        <td><a href='${pageContext.request.contextPath}/inventory/view?id=1'>LWL-00062</a></td>
-                        <td>Ruler</td>
-                        <td><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                        <td>LWL-0024</td>
-                        <td>Camera</td>
-                        <td><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                        <td>LWL-0027</td>
-                        <td>Scrotch tape</td>
-                        <td><input type="checkbox"></td>
-                    </tr>
+                    </table>
 
-                    <%
-                        //Iterate through the items
+                    <br>
 
-                    %>
+                    <button class="btn" onclick="confirm('Are you sure?')">
+                        Remove selected items
+                    </button>
 
-                </table>
+                    <a href="cart-confirm.html" class="btn btn-success ml-2">
+                        Submit
+                    </a>
 
-                <br>
+                    <br>
 
-                <button class="btn" onclick="confirm('Are you sure?')">
-                    Remove selected items
-                </button>
+                    By clicking submit, you will submit all available items in cart to your request.
+                    Availablility of the items may change depending on the actual situation.
 
-                <a href="cart-confirm.html" class="btn btn-success ml-2">
-                    Submit
-                </a>
-
-                <br>
-
-                By clicking submit, you will submit all available items in cart to your request.
-                Availablility of the items may change depending on the actual situation.
-
+                </form>
             </div>
         </div>
     </div>
