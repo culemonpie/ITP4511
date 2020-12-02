@@ -3,6 +3,7 @@ package ivpet.bean;
 import java.io.Serializable;
 
 public class EquipmentBean implements Serializable {
+
     private int id;
     private String name;
     private int status;
@@ -32,6 +33,25 @@ public class EquipmentBean implements Serializable {
 
     public int getstatus() {
         return status;
+    }
+
+    public String getStatusVerbose() {
+        String verbose = "";
+        switch (status) {
+            case 0:
+                verbose = "Available";
+                break;
+            case 1:
+                verbose = "Occupied";
+                break;
+            case 2:
+                verbose = "Under repair";
+                break;
+            case 3:
+                verbose = "Removed";
+                break;
+        }
+        return verbose;
     }
 
     public boolean getis_listed() {

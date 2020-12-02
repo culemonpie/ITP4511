@@ -10,9 +10,7 @@
 	<!-- PAGE settings -->
 	<!-- <link rel="icon" href="https://templates.pingendo.com/assets/Pingendo_favicon.ico"> -->
 	<title><%=request.getParameter("title") != null ? request.getParameter("title") + " - IVPET" : "IVPET"%></title>
-	<meta name="description" content="Wireframe design of an album page by Pingendo">
-	<meta name="keywords" content="Pingendo bootstrap example template wireframe album ">
-	<meta name="author" content="Pingendo">
+	<meta name="description" content="IVPET">
 	<!-- CSS dependencies -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/wireframe.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/custom.css">

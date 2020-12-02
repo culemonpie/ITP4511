@@ -297,6 +297,42 @@ public class AssignmentDB {
         return arrayList_cb;
     }
 
+    public EquipmentBean getEquipment(int id) {
+        Connection con = null;
+        PreparedStatement preparedStatement = null;
+        EquipmentBean equipment = null;
+        try {
+            con = getConnection();
+            String sql = "SELECT * FROM Equipment WHERE id = ?";
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+
+            ResultSet rs = null;
+            preparedStatement.executeQuery();
+            rs = preparedStatement.getResultSet();
+            while (rs.next()) {
+                equipment = new EquipmentBean();
+                equipment.setid(rs.getInt("id"));
+                equipment.setDescription(rs.getString("Description"));
+                equipment.setTag(rs.getString("Tag"));
+                equipment.setis_listed(rs.getBoolean("is_listed"));
+                equipment.setname(rs.getString("name"));
+                equipment.setstatus(rs.getInt("status"));
+                break;
+            }
+            preparedStatement.close();
+            con.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return equipment;
+    }
+
     public ArrayList<ReservationRequestBean> listAllReservationRequest() {
         Connection con = null;
         PreparedStatement pstmt = null;

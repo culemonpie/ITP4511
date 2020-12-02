@@ -24,18 +24,24 @@ public class test {
 //        String password = "AWSDAWSD123";
 //        AssignmentDB db = new AssignmentDB(url, username, password);
 //        db.createTable();
-//        db.addEQUIPMENT("HDMI Cable", 0, "A cable that connects computer to a projector.", "Video accessories");
+//        db.addEquipment("HDMI Cable", 0, "A cable that connects computer to a projector.", "Video accessories");
+//        db.addEquipment("Bandage", 0, "For first aid", "Medical");
 
         AssignmentDB db = new AssignmentDB();
+        
+        //  list users
+        System.out.println("== List Users == ");
         ArrayList<UserBean> users = db.listUsers();
         for (UserBean user : users) {
             System.out.println(user.getUsername());
         }
-//        db.addUser("adayuen@exampl.com", "jojocat", 3);
-        UserBean cb = new UserBean("BB", "CC", 2);
-//        EquipmentBean eb = new EquipmentBean(2, "test", 1, true, "Dec", "TAG");
-//        ReservationRequestBean rb = new ReservationRequestBean(1, "123", 1, 1);
-        BorrowRecordBean bb = new BorrowRecordBean(1, 1, "2020-10-10", "2020-10-10", "2020-10-10", true, 1);
-        db.editBorrowRecord(bb);
+        
+        System.out.println("== List Inventory ==");
+        
+        
+        ArrayList<EquipmentBean> equipments = db.listAllEquipment();
+        for (EquipmentBean equipment : equipments){
+            System.out.println(equipment.getname() + ": " + equipment.getDescription() );
+        }
     }
 }
