@@ -5,6 +5,8 @@
  */
 package ivpet.servlet;
 
+import ivpet.bean.EquipmentBean;
+import ivpet.db.AssignmentDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -53,13 +55,6 @@ public class InventoryUpdateServlet extends AbstractServlet {
 	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 	    dispatcher.forward(request, response);
 
-	    // todo later
-	    if (id != null) {
-
-	    } else {
-
-	    }
-
 	}
     }
 
@@ -89,7 +84,26 @@ public class InventoryUpdateServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	String message_text = "有嘢衰咗";
+        
+                int id = Integer.parseInt(request.getParameter("id"));
+
+        AssignmentDB db = new AssignmentDB();
+        EquipmentBean equipment = db.getEquipment(id);
+        
+        String name = request.getParameter("name");
+        int status = Integer.parseInt(request.getParameter("status"));
+        String description = request.getParameter("description");
+        String tag = request.getParameter("tags");
+        
+        equipment.setname(name);
+        equipment.setstatus(status);
+        equipment.setDescription(description);
+        equipment.setTag(tag);
+        
+        db.editEquipmentRecord(equipment);
+        
+        
+	String message_text = "Success";
 	request.setAttribute("message", message_text);
 	processRequest(request, response);
     }

@@ -26,6 +26,7 @@
                     <button type="submit" class="btn btn-primary">Save</button>
                     <a href="${pageContext.request.contextPath}/inventory/view?id=<%=id%>" class="btn btn-default ml-1">Return</a>
 
+                    <input type="hidden" name="id" value="<%=id%>">
 
                     <div class="row">
                         <div class="col-12 col-sm-6 col-md-4">
