@@ -5,8 +5,11 @@
  */
 package ivpet.servlet;
 
+import ivpet.bean.EquipmentBean;
+import ivpet.db.AssignmentDB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,7 +50,41 @@ public class AddToCartServlet extends AbstractServlet {
 //            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 //            dispatcher.forward(request, response);
 ////	    }
-            request.setAttribute("message", "Added item to cart");
+
+            String id = request.getParameter("id");
+            Integer id_int = Integer.parseInt(id);
+            AssignmentDB db = new AssignmentDB();
+            EquipmentBean equipment = db.getEquipment(Integer.parseInt(id));
+
+            /*
+            If that equipment exists.
+                If so, check if it's in cart
+                    Prompt user that it's already in cart
+                Else
+                    Add item to cart
+            Else
+                Prompt that it doesn't exist
+             */
+            HttpSession session = request.getSession();
+            if (equipment != null) {
+                ArrayList<Integer> cart = null;
+                if (session.getAttribute("cart") != null) {
+                    cart = (ArrayList) session.getAttribute("cart");
+                    if (!cart.contains(id_int)) {
+                        cart.add(id_int);
+                        session.setAttribute("message", String.format("Added %s to cart", equipment.getname()));
+                    } else {
+                        session.setAttribute("message", "Item is already in cart");
+                    }
+                } else {
+                    cart = new ArrayList();
+                    cart.add(Integer.parseInt(id));
+                    session.setAttribute("message", String.format("Added %s to cart", equipment.getname()));
+                }
+                session.setAttribute("cart", cart);
+            } else {
+                session.setAttribute("message", "Equipment does not exist");
+            }
             String url = "/index.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
             dispatcher.forward(request, response);
