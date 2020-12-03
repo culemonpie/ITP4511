@@ -21,7 +21,7 @@
 		<form class="form-signin" action="loginServlet" method="post">
 		    <div class="form-label-group">
 			<label for="inputEmail">Username</label>
-			<input type="text" name="username" id="username" class="form-control" placeholder="Email address" required autofocus>
+			<input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
 		    </div>
 
 		    <div class="form-label-group">

@@ -24,7 +24,7 @@
 
                 <!-- todo: Technician only -->
                 <a href="${pageContext.request.contextPath}/inventory/update?id=<%=id%>" class="btn btn-primary">Update</a>
-                <a href="${pageContext.request.contextPath}/inventory/update?id=<%=id%>" class="btn btn-primary">Add to cart</a>
+                <a href="${pageContext.request.contextPath}/addToCart?id=<%=id%>" class="btn btn-primary">Add to cart</a>
                 <a href="${pageContext.request.contextPath}/inventory/list.jsp" class="btn btn-default">Return</a>
 
                 <div class="row">

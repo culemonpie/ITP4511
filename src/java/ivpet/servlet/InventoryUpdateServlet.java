@@ -22,10 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "InventoryUpdateServlet", urlPatterns = {"/inventory/update"})
 /**
- * Code: 3.3
- * Who can access: Technicians
- * Description: Technicians updating
-*/
+ * Code: 3.3 Who can access: Technicians Description: Technicians updating
+ */
 
 public class InventoryUpdateServlet extends AbstractServlet {
 
@@ -39,23 +37,21 @@ public class InventoryUpdateServlet extends AbstractServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	response.setContentType("text/html;charset=UTF-8");
-	try (PrintWriter out = response.getWriter()) {
-	    /* TODO output your page here. You may use following sample code. */
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
 
-	    //Obtain the id
-	    String id = request.getParameter("id");
-	    
-	    
+            //Obtain the id
+            String id = request.getParameter("id");
 
-	    request.setAttribute("title", String.format("Update inventory #%s", id));
-	    request.setAttribute("id", id);
-	    String url = "/inventory/update.jsp";
-	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-	    dispatcher.forward(request, response);
+            request.setAttribute("title", String.format("Update inventory #%s", id));
+            request.setAttribute("id", id);
+            String url = "/inventory/update.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
 
-	}
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -69,8 +65,8 @@ public class InventoryUpdateServlet extends AbstractServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	processRequest(request, response);
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -83,31 +79,34 @@ public class InventoryUpdateServlet extends AbstractServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-        
-                int id = Integer.parseInt(request.getParameter("id"));
+            throws ServletException, IOException {
+
+        int id = Integer.parseInt(request.getParameter("id"));
 
         AssignmentDB db = new AssignmentDB();
         EquipmentBean equipment = db.getEquipment(id);
-        
+
         String name = request.getParameter("name");
         int status = Integer.parseInt(request.getParameter("status"));
         String description = request.getParameter("description");
         String tag = request.getParameter("tags");
         boolean is_listed = request.getParameter("is_listed") != null;
-        
+
         equipment.setname(name);
         equipment.setstatus(status);
         equipment.setDescription(description);
         equipment.setTag(tag);
         equipment.setis_listed(is_listed);
-        
+
         db.editEquipmentRecord(equipment);
-        
-        
-	String message_text = "Success";
-	request.setAttribute("message", message_text);
-	processRequest(request, response);
+
+        String message_text = "Success";
+        request.setAttribute("message", message_text);
+        request.setAttribute("id", id);
+        String url = "/inventory/view.jsp";
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+        dispatcher.forward(request, response);
+
     }
 
     /**
@@ -117,7 +116,7 @@ public class InventoryUpdateServlet extends AbstractServlet {
      */
     @Override
     public String getServletInfo() {
-	return "Short description";
+        return "Short description";
     }// </editor-fold>
 
 }

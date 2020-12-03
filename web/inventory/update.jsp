@@ -42,12 +42,15 @@
                             Status
                         </div>
                         <div class="col-12 col-sm-6 col-md-8">
-                            <select name="status" class="form-control">
+                            <select id="status" name="status" class="form-control">
                                 <option value="0">Available</option>
                                 <option value="1">Occupied</option>
                                 <option value="2">Under Repair</option>
                                 <option value="3">Removed</option>
                             </select>
+                            <script>
+                                document.getElementById('status').value = <%=equipment.getstatus()%>;
+                            </script>
                         </div>
                     </div>
 

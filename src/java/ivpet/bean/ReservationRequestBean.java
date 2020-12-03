@@ -17,6 +17,16 @@ public class ReservationRequestBean implements Serializable {
     private String equipment_id; //??
     private int submitted_by;
     private int type;
+    
+    private ArrayList<EquipmentBean> equipments;
+
+    public ArrayList<EquipmentBean> getEquipments() {
+        return equipments;
+    }
+
+    public void setEquipments(ArrayList<EquipmentBean> equipments) {
+        this.equipments = equipments;
+    }
 
     public ReservationRequestBean() {
     }

@@ -34,7 +34,7 @@ public class LoginServlet extends AbstractServlet {
     boolean doAuthenticate(HttpServletRequest request, String username, String password) {
 	boolean password_match = false;
 	if (username.equals("demo") && password.equals("demoPassword")) {
-	    HttpSession session = request.getSession();
+            HttpSession session = request.getSession();
 	    session.setAttribute("username", username);
 	    session.setAttribute("role", 1);
 	    password_match = true;

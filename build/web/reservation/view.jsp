@@ -1,3 +1,4 @@
+<%@page import="ivpet.db.AssignmentDB, ivpet.bean.*" %>
 <%@ taglib uri="/WEB-INF/tlds/ivpet_tags.tld" prefix="ivpet" %>
 <!DOCTYPE html>
 
@@ -6,6 +7,15 @@
     String id = (String) request.getAttribute("id");
     String title = (String) request.getAttribute("title");
     String message = (String) request.getAttribute("message");
+    
+    /**
+     * Reservation ID: 1
+     * Items: 1,3
+     * User: 2
+     * Status: Pending
+     * Submitted Time: 2020-12-31 1:22:34
+     */
+    
 %>
 <jsp:include page="/WEB-INF/header.jsp">  
     <jsp:param name="title" value="<%=title%>" />
