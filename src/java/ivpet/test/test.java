@@ -1,3 +1,5 @@
+package ivpet.test;
+
 import ivpet.bean.BorrowRecordBean;
 import ivpet.bean.EquipmentBean;
 import ivpet.bean.ReservationRequestBean;
@@ -23,25 +25,33 @@ public class test {
 //        String username = "APP";
 //        String password = "AWSDAWSD123";
 //        AssignmentDB db = new AssignmentDB(url, username, password);
-//        db.createTable();
 //        db.addEquipment("HDMI Cable", 0, "A cable that connects computer to a projector.", "Video accessories");
 //        db.addEquipment("Bandage", 0, "For first aid", "Medical");
 
         AssignmentDB db = new AssignmentDB();
+//        db.createTable();
+
+
+        int user_id = 1; //testing
+        int status = 0; //pending 
         
-        //  list users
-        System.out.println("== List Users == ");
-        ArrayList<UserBean> users = db.listUsers();
-        for (UserBean user : users) {
-            System.out.println(user.getUsername());
-        }
+        int reservation_id = db.addReservationRequest(user_id, status);
+        ReservationRequestBean reservationrequest = db.getReservationRequest(reservation_id);
+        // diu, jump building
         
-        System.out.println("== List Inventory ==");
-        
-        
-        ArrayList<EquipmentBean> equipments = db.listAllEquipment();
-        for (EquipmentBean equipment : equipments){
-            System.out.println(equipment.getname() + ": " + equipment.getDescription() );
-        }
+//        //  list users
+//        System.out.println("== List Users == ");
+//        ArrayList<UserBean> users = db.listUsers();
+//        for (UserBean user : users) {
+//            System.out.println(user.getUsername());
+//        }
+//        
+//        System.out.println("== List Inventory ==");
+//        
+//        
+//        ArrayList<EquipmentBean> equipments = db.listAllEquipment();
+//        for (EquipmentBean equipment : equipments){
+//            System.out.println(equipment.getname() + ": " + equipment.getDescription() );
+//        }
     }
 }

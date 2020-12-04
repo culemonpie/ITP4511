@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class ReservationRequestBean implements Serializable {
     private int id;
-    private String equipment_id; //??
+//    private String equipment_id; //??
     private int submitted_by;
     private int type;
     
@@ -31,9 +31,9 @@ public class ReservationRequestBean implements Serializable {
     public ReservationRequestBean() {
     }
 
-    public ReservationRequestBean(int id, String equipment_id, int submitted_by, int type) {
+    public ReservationRequestBean(int id, int submitted_by, int type) {
         this.id = id;
-        this.equipment_id = equipment_id;
+//        this.equipment_id = equipment_id;
         this.submitted_by = submitted_by;
         this.type = type;
     }
@@ -46,9 +46,9 @@ public class ReservationRequestBean implements Serializable {
         this.id = id;
     }
 
-    public String getequipment_id() {
-        return equipment_id;
-    }
+//    public String getequipment_id() {
+//        return equipment_id;
+//    }
 
     public int getsubmitted_by() {
         return submitted_by;
@@ -58,9 +58,9 @@ public class ReservationRequestBean implements Serializable {
         return type;
     }
 
-    public void setequipment_id(String v) {
-        equipment_id = v;
-    }
+//    public void setequipment_id(String v) {
+//        equipment_id = v;
+//    }
 
     public void setsubmitted_by(int v) {
         submitted_by = v;
