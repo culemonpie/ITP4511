@@ -16,8 +16,6 @@ import java.util.ArrayList;
  *
  * @author ngkac
  */
-
-
 public class test {
 
     public static void main(String[] args) {
@@ -31,14 +29,16 @@ public class test {
         AssignmentDB db = new AssignmentDB();
 //        db.createTable();
 
+        for (ReservationRequestBean reservation : db.listAllReservationRequest()) {
+            System.out.println("Line 35: " + reservation);
 
-        int user_id = 1; //testing
-        int status = 0; //pending 
-        
-        int reservation_id = db.addReservationRequest(user_id, status);
-        ReservationRequestBean reservationrequest = db.getReservationRequest(reservation_id);
+        }
+
+//        int user_id = 1; //testing
+//        int status = 0; //pending 
+//        int reservation_id = db.addReservationRequest(user_id, status);
+//        ReservationRequestBean reservationrequest = db.getReservationRequest(reservation_id);
         // diu, jump building
-        
 //        //  list users
 //        System.out.println("== List Users == ");
 //        ArrayList<UserBean> users = db.listUsers();

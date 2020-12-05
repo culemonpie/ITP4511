@@ -82,7 +82,7 @@
                     </a>
 
                         <% if (cart != null && cart.size() > 0){ %>
-                    <a href="c${pageContext.request.contextPath}/addToCart?action=submit" class="btn btn-success ml-2">
+                    <a href="${pageContext.request.contextPath}/addToCart?action=submit" class="btn btn-success ml-2">
                         Submit
                     </a>
                         <% } else { %>

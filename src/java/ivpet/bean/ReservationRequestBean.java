@@ -13,11 +13,12 @@ import java.util.ArrayList;
  * @author ngkac
  */
 public class ReservationRequestBean implements Serializable {
+
     private int id;
 //    private String equipment_id; //??
     private int submitted_by;
     private int type;
-    
+
     private ArrayList<EquipmentBean> equipments;
 
     public ArrayList<EquipmentBean> getEquipments() {
@@ -49,7 +50,6 @@ public class ReservationRequestBean implements Serializable {
 //    public String getequipment_id() {
 //        return equipment_id;
 //    }
-
     public int getsubmitted_by() {
         return submitted_by;
     }
@@ -58,10 +58,31 @@ public class ReservationRequestBean implements Serializable {
         return type;
     }
 
+    public String getTypeVerbose() {
+        String msg = "";
+        switch (type) {
+            case 0:
+                msg = "Pending";
+                break;
+            case 1:
+                msg = "Approved";
+                break;
+            case 2:
+                msg = "Rejected";
+                break;
+            case 3:
+                msg = "Cancelled";
+                break;
+            case 4:
+                msg = "Expired";
+                break;
+        }
+        return msg;
+    }
+
 //    public void setequipment_id(String v) {
 //        equipment_id = v;
 //    }
-
     public void setsubmitted_by(int v) {
         submitted_by = v;
     }

@@ -55,7 +55,7 @@ public class AddToCartServlet extends AbstractServlet {
                 Prompt that it doesn't exist
              */
             String action = request.getParameter("action");
-            if (action == null){
+            if (action == null) {
                 action = "add"; //to be fixed from upstream
             }
 
@@ -67,10 +67,36 @@ public class AddToCartServlet extends AbstractServlet {
                 cart.clear();
                 session.setAttribute("cart", cart);
                 request.setAttribute("message", "Cart cleared");
-                out.println("120");
             } else if (action.equals("submit")) {
+                /*
+                1. create reservation request (submitted by user)
+                2. add all items in cart to ReservationEquipment
+                3. clear cart
+                4. redirect to the newly created reservation
+                5. prompt user
+                 */
+
+                //1
+                int user_id = 1; //to be replaced
+                int reservation_id = db.addReservationRequest(user_id, 0);
+
+                //2
+                cart = (ArrayList) session.getAttribute("cart");
+                ArrayList<EquipmentBean> equipments = new ArrayList();
+                for (int equipment_id : cart) {
+                    EquipmentBean equipment = db.getEquipment(equipment_id);
+                    equipments.add(equipment);
+                }
+                db.setEquipmentByReservation(reservation_id, equipments);
+
+                //3
+                cart.clear();
+                session.setAttribute("cart", cart);
+
+                //3
+                request.setAttribute("message", "Reservation created");
                 //submit cart
-            } else if (action.equals("add")){
+            } else if (action.equals("add")) {
                 out.println(3);
                 String id = request.getParameter("id");
                 Integer id_int = Integer.parseInt(id);
