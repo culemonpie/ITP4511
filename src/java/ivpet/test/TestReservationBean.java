@@ -34,15 +34,12 @@ public class TestReservationBean {
 
 //        ReservationRequestBean reservation = new ReservationRequestBean();
 //        reservation.setId(1);
-        EquipmentBean equipment1 = new EquipmentBean();
-        equipment1.setname("HDMI");
-        equipment1.setDescription("HDMI Cable");
-        equipment1.setstatus(1);
+        //Todo: return integer from that
+        int equipment_id1 = db.addEquipment("HDMI", 1, "HDMI Cable", "Video accessories");
+        int equipment_id2 = db.addEquipment("Bandage", 1, "Bandage used for first aid", "I don't feel so good");
 
-        EquipmentBean equipment2 = new EquipmentBean();
-        equipment2.setname("Bandage");
-        equipment2.setDescription("Fat");
-        equipment2.setstatus(1);
+        EquipmentBean equipment1 = db.getEquipment(equipment_id1);
+        EquipmentBean equipment2 = db.getEquipment(equipment_id2);
 
         int reservation_id = db.addReservationRequest(user_id, 0);
         ReservationRequestBean reservation = db.getReservationRequest(reservation_id);
@@ -55,12 +52,18 @@ public class TestReservationBean {
         reservation.setsubmitted_by(user_id);
 
         db.editReservationRequestRecord(reservation);
+        db.setEquipmentByReservation(reservation.getId(), equipments);
 
-//        String n = db.getUser(reservation.getId()).getUsername();
-        String msg = String.format("\n==Reservation Bean==\nid: %s\nSubmitted By: %s\nItems: (todo)",
+        String msg = String.format("\n==Reservation Bean==\nid: %s\nSubmitted By: %s\nItems:",
                 reservation.getId(),
                 db.getUser(reservation.getId()).getUsername()
         );
+
+        for (EquipmentBean e : db.getEquipmentsByReservation(reservation.getId())) {
+            System.out.println("x");
+            msg += String.format("\n\t%s: %s", e.getname(), e.getDescription() );
+        }
+
         System.out.println(msg);
 
 //        reservation_id = 1;

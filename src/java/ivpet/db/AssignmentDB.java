@@ -129,14 +129,11 @@ public class AssignmentDB {
             preparedStatement.setString(2, password);
             preparedStatement.setInt(3, type);
             int rows = preparedStatement.executeUpdate();
-//            System.out.println("Line 128 - " + rows);
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
-//                System.out.println("Line 131");
                 result = (int) rs.getLong(1);
                 System.out.println(String.format("Username: %s, id: %s", username, result));
             } else {
-//                System.out.println("Line 135");
                 throw new SQLException("Failed");
             }
             preparedStatement.close();
@@ -221,33 +218,35 @@ public class AssignmentDB {
         return isSuccess;
     }
 
-    public boolean addEquipment(String name, int status, String description, String tag) {
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        boolean isSuccess = false;
+    public int addEquipment(String name, int status, String description, String tag) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        int result = 0;
         try {
-            con = getConnection();
-            String SQL = "INSERT INTO EQUIPMENT(name,status,is_listed,description,tag) VALUES(?,?,'TRUE',?,?)";
-            pstmt = con.prepareStatement(SQL);
-            pstmt.setString(1, name);
-            pstmt.setInt(2, status);
-            pstmt.setString(3, description);
-            pstmt.setString(4, tag);
-            int rowCount = pstmt.executeUpdate();
-            if (rowCount >= 1) {
-                isSuccess = true;
+            connection = getConnection();
+            String sql = "INSERT INTO EQUIPMENT(name,status,is_listed,description,tag) VALUES(?,?,'TRUE',?,?)";
+            preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, status);
+            preparedStatement.setString(3, description);
+            preparedStatement.setString(4, tag);
+            int rowCount = preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.getGeneratedKeys();
+            if (rs.next()) {
+                result = (int) rs.getLong(1);
+            } else {
+                throw new SQLException("Failed");
             }
-            pstmt.close();
-            con.close();
+            preparedStatement.close();
+            connection.close();
         } catch (SQLException ex) {
             while (ex != null) {
                 ex.printStackTrace();
                 ex = ex.getNextException();
             }
         } catch (IOException ex) {
-            return isSuccess;
         }
-        return isSuccess;
+        return result;
     }
 
     public int addReservationRequest(int submitted_by, int type) {
@@ -672,12 +671,65 @@ public class AssignmentDB {
         }
         return reservation;
     }
-    
-    public ArrayList<EquipmentBean> getEquipmentsByReservation(int id){
+
+    public ArrayList<EquipmentBean> getEquipmentsByReservation(int id) {
         ArrayList<EquipmentBean> equipments = new ArrayList();
-        
+        String sql = "SELECT * FROM ReservationEquipment where reservation_id = ?";
+        try {
+            Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            ResultSet rs = null;
+            UserBean userBean = null;
+            preparedStatement.executeQuery();
+            rs = preparedStatement.getResultSet();
+            while (rs.next()) {
+                EquipmentBean equipment = getEquipment(rs.getInt("equipment_id"));
+                equipments.add(equipment);
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return equipments;
     }
-    
+
+    public void setEquipmentByReservation(int reservation_id, ArrayList<EquipmentBean> equipments) {
+        /**
+         * doesn't check for duplicate submission for equipment_id in equipments
+         * insert into reservationequipment (reservation_id, equipment_id)
+         *
+         */
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try {
+            connection = getConnection();
+
+            for (EquipmentBean equipment : equipments) {
+                String sql = "insert into reservationequipment(reservation_id, equipment_id) values(?, ?)";
+                preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                preparedStatement.setInt(1, reservation_id);
+                preparedStatement.setInt(2, equipment.getid());
+                int row = preparedStatement.executeUpdate();
+                if (row == 0) {
+                    System.out.println("Failed");
+                }
+            }
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+        }
+    }
 
     public void editUserRecord(UserBean cb) {
         Connection con = null;
