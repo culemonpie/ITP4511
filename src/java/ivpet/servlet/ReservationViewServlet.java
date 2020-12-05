@@ -5,8 +5,12 @@
  */
 package ivpet.servlet;
 
+import ivpet.db.AssignmentDB;
+import ivpet.bean.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.time.LocalDate;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -84,8 +88,68 @@ public class ReservationViewServlet extends AbstractServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 	//todo: Samuel please work on the messages here
-	String message = (String)request.getParameter("action");
-	request.setAttribute("message", message);
+	String action = request.getParameter("action");
+        AssignmentDB db = new AssignmentDB();
+        
+        if (action.equals("approve")){
+            /*
+            1. Edit reservation.approved_by = request.session.user
+            2. Change all equipments of that reservation to be occupied (status 1)
+            3. Create borrow record (status 0, checkout_date = today, returned_date = T+14
+            4. Prompt message success
+            
+            
+            with django.db.transaction.atomic():
+                reservation = get_object_or_404(m.ReservationRequest, id)
+                reservation.approved_by = request.user
+                reservation.save()
+
+                reservation.equipments_set().update(status = m.Equipments.OCCUPIED)
+                #Auto saving
+
+                borrow_record = m.BorrowRecord(status = m.BorrowRecord.PENDING)
+                //checkout_date is added automatically
+                borrow_record.returned_date = datetime.date.today() + datetime.timedelta(days = config.LOAN_PERIOD)
+                borrow_record.save()
+
+                alerts.append(m.Alert("Record has been added"))
+            
+            return HttpResponseRedirect(reverse("reservation_view", args=[reservation.id]))
+            
+            */
+            
+            //1
+            String id = request.getParameter("id");
+            ReservationRequestBean reservation = db.getReservationRequest(Integer.parseInt(id));
+            //todo: Change action??
+            
+            //2
+            for (EquipmentBean equipment: reservation.getEquipments()){
+                equipment.setstatus(1);//occupied
+                db.editEquipmentRecord(equipment);
+            }
+            
+            //3
+            //todo: obtain the instance of BorrowRecordBean
+            LocalDate today =  LocalDate.now();
+            LocalDate due_date = today.plusDays(14);
+            db.addBorrowRecord(Integer.parseInt(id), 0, today.toString(), due_date.toString(), false, 0);
+            BorrowRecordBean borrowRecord = null;
+            
+            //4
+            request.setAttribute("message", "Success");
+            
+            
+            
+            
+            
+        } else if (action.equals("reject")){
+            /*
+            
+            */
+        } 
+        
+	request.setAttribute("message", action);
 	
 	
 	//do not change
