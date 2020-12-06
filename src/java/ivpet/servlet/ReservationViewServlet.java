@@ -35,30 +35,28 @@ public class ReservationViewServlet extends AbstractServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	response.setContentType("text/html;charset=UTF-8");
-	try (PrintWriter out = response.getWriter()) {
-	    /* TODO output your page here. You may use following sample code. */
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
 
-	    //Obtain the id
-	    String id = request.getParameter("id");
-	    
-	    
+            //Obtain the id
+            String id = request.getParameter("id");
 
-	    request.setAttribute("title", String.format("View reservation #%s", id));
-	    request.setAttribute("id", id);
-	    String url = "/reservation/view.jsp";
-	    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-	    dispatcher.forward(request, response);
+            request.setAttribute("title", String.format("View reservation #%s", id));
+            request.setAttribute("id", id);
+            String url = "/reservation/view.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+            dispatcher.forward(request, response);
 
-	    // todo later
-	    if (id != null) {
+            // todo later
+            if (id != null) {
 
-	    } else {
+            } else {
 
-	    }
+            }
 
-	}
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,8 +70,8 @@ public class ReservationViewServlet extends AbstractServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	processRequest(request, response);
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -86,12 +84,12 @@ public class ReservationViewServlet extends AbstractServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	//todo: Samuel please work on the messages here
-	String action = request.getParameter("action");
+            throws ServletException, IOException {
+        //todo: Samuel please work on the messages here
+        String action = request.getParameter("action");
         AssignmentDB db = new AssignmentDB();
-        
-        if (action.equals("approve")){
+
+        if (action.equals("approve")) {
             /*
             1. Edit reservation.approved_by = request.session.user
             2. Change all equipments of that reservation to be occupied (status 1)
@@ -116,44 +114,41 @@ public class ReservationViewServlet extends AbstractServlet {
             
             return HttpResponseRedirect(reverse("reservation_view", args=[reservation.id]))
             
-            */
-            
+             */
+
             //1
+            int user_id = 1; //to be replaced
             String id = request.getParameter("id");
             ReservationRequestBean reservation = db.getReservationRequest(Integer.parseInt(id));
-            //todo: Change action??
-            
+            reservation.settype(1);//approved
+            db.editReservationRequestRecord(reservation);
+
             //2
-            for (EquipmentBean equipment: reservation.getEquipments()){
+            for (EquipmentBean equipment : db.getEquipmentsByReservation(reservation.getId())) { //change jor
                 equipment.setstatus(1);//occupied
                 db.editEquipmentRecord(equipment);
             }
-            
+
             //3
-            //todo: obtain the instance of BorrowRecordBean
-            LocalDate today =  LocalDate.now();
+            LocalDate today = LocalDate.now();
             LocalDate due_date = today.plusDays(14);
-            db.addBorrowRecord(Integer.parseInt(id), 0, today.toString(), due_date.toString(), false, 0);
-            BorrowRecordBean borrowRecord = null;
-            
+            db.addBorrowRecord(reservation.getId(), 0, today.toString(), due_date.toString(), false, user_id);
+            //todo: obtain the instance of BorrowRecordBean
+            BorrowRecordBean borrowRecord = db.getBorrowRecord(1);
+
             //4
             request.setAttribute("message", "Success");
-            
-            
-            
-            
-            
-        } else if (action.equals("reject")){
+
+        } else if (action.equals("reject")) {
             /*
             
-            */
-        } 
-        
-	request.setAttribute("message", action);
-	
-	
-	//do not change
-	processRequest(request, response);
+             */
+        }
+
+        request.setAttribute("message", action);
+
+        //do not change
+        processRequest(request, response);
     }
 
     /**
@@ -163,7 +158,7 @@ public class ReservationViewServlet extends AbstractServlet {
      */
     @Override
     public String getServletInfo() {
-	return "Short description";
+        return "Short description";
     }// </editor-fold>
 
 }

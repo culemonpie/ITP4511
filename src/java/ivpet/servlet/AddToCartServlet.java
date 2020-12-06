@@ -93,7 +93,7 @@ public class AddToCartServlet extends AbstractServlet {
                 cart.clear();
                 session.setAttribute("cart", cart);
 
-                //3
+                //4
                 request.setAttribute("message", "Reservation created");
                 //submit cart
             } else if (action.equals("add")) {

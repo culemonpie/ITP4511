@@ -49,21 +49,24 @@ public class AssignmentDB {
         try {
             Connection con = getConnection();
             statement = con.createStatement();
-//            String sql = "CREATE TABLE USERTABLE (" + "id int GENERATED ALWAYS AS IDENTITY not null primary key,"
-//                    + "username VARCHAR(255), password VARCHAR(255), type INTEGER)";
-//            statement.execute(sql);
-//            
-//            String sql2 = "CREATE TABLE RESERVATIONREQUEST ("
-//                    + "id int GENERATED ALWAYS AS IDENTITY not null primary key,"
-//                    + "submitted_by INTEGER, type INTEGER,FOREIGN KEY (submitted_by) REFERENCES USERTABLE(id))";
-//            statement.execute(sql2);
-//            String sql3 = "CREATE TABLE EQUIPMENT (" + "id int GENERATED ALWAYS AS IDENTITY not null primary key,"
-//                    + "NAME VARCHAR(255), Status INTEGER, is_listed Boolean,Description VARCHAR(255),Tag VARCHAR(255))";
-//            statement.execute(sql3);
-//
-//            String sql4 = "CREATE TABLE BORROWRECORDS (" + "id int not null primary key,"
-//                    + " Status INTEGER,checkout_date date,due_date date,return_date date,is_overdue Boolean,approved_by INTEGER,FOREIGN KEY (id) REFERENCES RESERVATIONREQUEST(id),FOREIGN KEY (approved_by) REFERENCES USERTABLE(id))";
-//            statement.execute(sql4);
+            String sql = "CREATE TABLE USERTABLE (" + "id int GENERATED ALWAYS AS IDENTITY not null primary key,"
+                    + "username VARCHAR(255), password VARCHAR(255), type INTEGER)";
+            statement.execute(sql);
+            
+            String sql2 = "CREATE TABLE RESERVATIONREQUEST ("
+                    + "id int GENERATED ALWAYS AS IDENTITY not null primary key,"
+                    + "submitted_by INTEGER, type INTEGER,"
+                    + "FOREIGN KEY (submitted_by) REFERENCES USERTABLE(id))";
+            statement.execute(sql2);
+            String sql3 = "CREATE TABLE EQUIPMENT (" + "id int GENERATED ALWAYS AS IDENTITY not null primary key,"
+                    + "NAME VARCHAR(255), Status INTEGER, is_listed Boolean,Description VARCHAR(255),Tag VARCHAR(255))";
+            statement.execute(sql3);
+
+            String sql4 = "CREATE TABLE BORROWRECORDS (" + "id int not null primary key,"
+                    + " Status INTEGER,checkout_date date,due_date date,return_date date,is_overdue Boolean,approved_by INTEGER,"
+                    + "FOREIGN KEY (id) REFERENCES RESERVATIONREQUEST(id),"
+                    + "FOREIGN KEY (approved_by) REFERENCES USERTABLE(id))";
+            statement.execute(sql4);
 
             String sql5 = "CREATE TABLE ReservationEquipment (\n"
                     + "	reservation_id INT NOT NULL,\n"
@@ -90,20 +93,33 @@ public class AssignmentDB {
         try {
             Connection con = getConnection();
             statement = con.createStatement();
-            String sql = "DROP TABLE BORROWRECORDS";
+            String sql;
+            
+            sql = "Alter table reservationrequest drop constraint ru;"
+                    + "alter table borrowrecords drop constraint bu;"
+                    + "alter table borrowrecords drop constraint br;"
+                    + "alter table reservationequipment drop constraint rid;"
+                    + "alter table reservationrequest drop constraint eid;"
+                    + "DROP TABLE RESERVATIONEQUIPMENT;"
+                    + "DROP TABLE RESERVATIONREQUEST;"
+                    + "DROP TABLE BORROWRECORDS;"
+                    + "DROP TABLE EQUIPMENT;"
+                    + "DROP TABLE USERTABLE;";
             statement.execute(sql);
+            
+//            sql = "DROP TABLE RESERVATIONREQUEST";
+//            statement.execute(sql);
+//            
+//            sql = "DROP TABLE BORROWRECORDS";
+//            statement.execute(sql);
+//
+//            sql = "DROP TABLE EQUIPMENT";
+//            statement.execute(sql);
+//
+//
+//            sql = "DROP TABLE USERTABLE";
+//            statement.execute(sql);
 
-            sql = "DROP TABLE EQUIPMENT";
-            statement.execute(sql);
-
-            sql = "DROP TABLE RESERVATIONREQUEST";
-            statement.execute(sql);
-
-            sql = "DROP TABLE USERTABLE";
-            statement.execute(sql);
-
-            sql = "DROP TABLE RESERVATIONEQUIPMENT";
-            statement.execute(sql);
 
             statement.close();
             con.close();
@@ -506,6 +522,45 @@ public class AssignmentDB {
         }
         return arrayList_cb;
     }
+    
+        public BorrowRecordBean getBorrowRecord(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        BorrowRecordBean borrowRecord = null;
+        ArrayList<BorrowRecordBean> arrayList_cb = new ArrayList<BorrowRecordBean>();
+        try {
+            connection = getConnection();
+            String sql = "SELECT * FROM BorrowRecordS WHERE id=?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            ResultSet rs = null;
+            preparedStatement.executeQuery();
+            rs = preparedStatement.getResultSet();
+            while (rs.next()) {
+                borrowRecord = new BorrowRecordBean();
+                borrowRecord.setId(rs.getInt("id"));
+                borrowRecord.setStatus(rs.getInt("Status"));
+                borrowRecord.setCheckout_date(rs.getString("CHECKOUT_DATE"));
+                borrowRecord.setDue_date(rs.getString("Due_date"));
+                borrowRecord.setReturn_date(rs.getString("Return_date"));
+                borrowRecord.setIs_overdue(rs.getBoolean("Is_overdue"));
+                borrowRecord.setApproved_by(rs.getInt("Approved_by"));
+                break;
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return borrowRecord;
+    }
+    
+    
 
     public ArrayList<ReservationRequestBean> QueryReservationRequestById(int id) {
         Connection con = null;
@@ -818,7 +873,7 @@ public class AssignmentDB {
         }
     }
 
-    public public void editBorrowRecord(BorrowRecordBean cb) {
+    public void editBorrowRecord(BorrowRecordBean cb) {
         Connection con = null;
         PreparedStatement pstmt = null;
         try {

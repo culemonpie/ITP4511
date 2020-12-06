@@ -3,17 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/ngkac/Desktop/4511/ITP4511/src/java/ivpet/bean/UserBean.java</file>
-            <file>file:/C:/Users/ngkac/Desktop/4511/ITP4511/src/java/ivpet/bean/ReservationRequestBean.java</file>
-            <file>file:/C:/Users/ngkac/Desktop/4511/ITP4511/src/java/ivpet/db/AssignmentDB.java</file>
-            <file>file:/C:/Users/ngkac/Desktop/4511/ITP4511/src/java/ivpet/bean/EquipmentBean.java</file>
-            <file>file:/C:/Users/ngkac/Desktop/4511/ITP4511/src/java/test.java</file>
-            <file>file:/C:/Users/ngkac/Desktop/4511/ITP4511/src/java/ivpet/db/CustomerDB.java</file>
-=======
-            <file>file:/Users/hsk/NetBeansProjects/ITP4511/src/java/test.java</file>
-            <file>file:/Users/hsk/NetBeansProjects/ITP4511/src/java/ivpet/db/CustomerDB.java</file>
->>>>>>> main
+            <file>file:/Users/hsk/NetBeansProjects/ITP4511/web/reservation/view.jsp</file>
+            <file>file:/Users/hsk/NetBeansProjects/ITP4511/src/java/ivpet/test/test.java</file>
+            <file>file:/Users/hsk/NetBeansProjects/ITP4511/src/java/ivpet/servlet/UserCreateServlet.java</file>
+            <file>file:/Users/hsk/NetBeansProjects/ITP4511/src/java/ivpet/db/AssignmentDB.java</file>
+            <file>file:/Users/hsk/NetBeansProjects/ITP4511/src/java/ivpet/servlet/AddToCartServlet.java</file>
+            <file>file:/Users/hsk/NetBeansProjects/ITP4511/src/java/ivpet/servlet/ReservationViewServlet.java</file>
+            <file>file:/Users/hsk/NetBeansProjects/ITP4511/web/cart.jsp</file>
         </group>
     </open-files>
 </project-private>
