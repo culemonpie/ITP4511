@@ -30,8 +30,13 @@ public class test {
 //        db.createTable();
 
         for (ReservationRequestBean reservation : db.listAllReservationRequest()) {
-            System.out.println("Line 35: " + reservation);
+            System.out.println("Line 33: " + reservation);
 
+            ArrayList<EquipmentBean> equipments = db.listAllEquipment();
+            for (EquipmentBean equipment : equipments) {
+                System.out.println(equipment.getname() + ": " + equipment.getDescription());
+            }
+            
         }
 
 //        int user_id = 1; //testing

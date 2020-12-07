@@ -63,7 +63,7 @@
                         User
                     </div>
                     <div class="col-12 col-sm-6 col-md-8">
-                        <%=db.getUser(reservation.getId()).getUsername()%>
+                        <%=db.getUser(reservation.getsubmitted_by()).getUsername()%>
                     </div>
                 </div>
 

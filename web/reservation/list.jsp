@@ -34,7 +34,7 @@
                                 Username
                             </div>
                             <div class="col-12 col-sm-6 col-md-8">
-                                <%=db.getUser(reservation.getId()).getUsername()%>
+                                <%=db.getUser(reservation.getsubmitted_by()).getUsername()%>
                             </div>
                         </div>
 
@@ -55,7 +55,7 @@
                                 <%
                                     String msg = "";
                                     for (EquipmentBean e : db.getEquipmentsByReservation(reservation.getId())) {
-                                        msg += String.format("\n\t%s: (Status: %s)", e.getname(), e.getStatusVerbose());
+                                        msg += String.format("%s (Status: %s)<br>", e.getname(), e.getStatusVerbose());
                                     }
                                     out.println(msg);
                                 %>
