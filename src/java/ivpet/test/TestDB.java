@@ -5,6 +5,8 @@
  */
 package ivpet.test;
 
+import ivpet.db.AssignmentDB;
+
 /**
  *
  * @author op7
@@ -12,9 +14,10 @@ package ivpet.test;
 public class TestDB {
 
 	public static void main(String[] args) {
-		String url = "jdbc:mysql://192.168.1.15:10002/ivpet";
-		String username = "itp4511";
-		String password = "ivpet";
-
+		String url = "jdbc:derby://localhost:1527/4511EA";
+		String username = "APP";
+		String password = "AWSDAWSD123";
+AssignmentDB db = new AssignmentDB();
+System.out.println(db.getUserByName("BB").getUsername());
 	}
 }

@@ -52,11 +52,10 @@ public class AssignmentDB {
             String sql = "CREATE TABLE USERTABLE (" + "id int GENERATED ALWAYS AS IDENTITY not null primary key,"
                     + "username VARCHAR(255), password VARCHAR(255), type INTEGER)";
             statement.execute(sql);
-            
+
             String sql2 = "CREATE TABLE RESERVATIONREQUEST ("
                     + "id int GENERATED ALWAYS AS IDENTITY not null primary key,"
-                    + "submitted_by INTEGER, type INTEGER,"
-                    + "FOREIGN KEY (submitted_by) REFERENCES USERTABLE(id))";
+                    + "submitted_by INTEGER, type INTEGER," + "FOREIGN KEY (submitted_by) REFERENCES USERTABLE(id))";
             statement.execute(sql2);
             String sql3 = "CREATE TABLE EQUIPMENT (" + "id int GENERATED ALWAYS AS IDENTITY not null primary key,"
                     + "NAME VARCHAR(255), Status INTEGER, is_listed Boolean,Description VARCHAR(255),Tag VARCHAR(255))";
@@ -68,12 +67,10 @@ public class AssignmentDB {
                     + "FOREIGN KEY (approved_by) REFERENCES USERTABLE(id))";
             statement.execute(sql4);
 
-            String sql5 = "CREATE TABLE ReservationEquipment (\n"
-                    + "	reservation_id INT NOT NULL,\n"
+            String sql5 = "CREATE TABLE ReservationEquipment (\n" + "	reservation_id INT NOT NULL,\n"
                     + "	equipment_id INT NOT NULL,\n"
                     + "FOREIGN KEY (reservation_id) REFERENCES RESERVATIONREQUEST(id),"
-                    + "FOREIGN KEY (equipment_id) REFERENCES Equipment(id)"
-                    + ")";
+                    + "FOREIGN KEY (equipment_id) REFERENCES Equipment(id)" + ")";
             statement.execute(sql5);
 
             statement.close();
@@ -94,32 +91,27 @@ public class AssignmentDB {
             Connection con = getConnection();
             statement = con.createStatement();
             String sql;
-            
-            sql = "Alter table reservationrequest drop constraint ru;"
-                    + "alter table borrowrecords drop constraint bu;"
+
+            sql = "Alter table reservationrequest drop constraint ru;" + "alter table borrowrecords drop constraint bu;"
                     + "alter table borrowrecords drop constraint br;"
                     + "alter table reservationequipment drop constraint rid;"
-                    + "alter table reservationrequest drop constraint eid;"
-                    + "DROP TABLE RESERVATIONEQUIPMENT;"
-                    + "DROP TABLE RESERVATIONREQUEST;"
-                    + "DROP TABLE BORROWRECORDS;"
-                    + "DROP TABLE EQUIPMENT;"
+                    + "alter table reservationrequest drop constraint eid;" + "DROP TABLE RESERVATIONEQUIPMENT;"
+                    + "DROP TABLE RESERVATIONREQUEST;" + "DROP TABLE BORROWRECORDS;" + "DROP TABLE EQUIPMENT;"
                     + "DROP TABLE USERTABLE;";
             statement.execute(sql);
-            
-//            sql = "DROP TABLE RESERVATIONREQUEST";
-//            statement.execute(sql);
-//            
-//            sql = "DROP TABLE BORROWRECORDS";
-//            statement.execute(sql);
-//
-//            sql = "DROP TABLE EQUIPMENT";
-//            statement.execute(sql);
-//
-//
-//            sql = "DROP TABLE USERTABLE";
-//            statement.execute(sql);
 
+            // sql = "DROP TABLE RESERVATIONREQUEST";
+            // statement.execute(sql);
+            //
+            // sql = "DROP TABLE BORROWRECORDS";
+            // statement.execute(sql);
+            //
+            // sql = "DROP TABLE EQUIPMENT";
+            // statement.execute(sql);
+            //
+            //
+            // sql = "DROP TABLE USERTABLE";
+            // statement.execute(sql);
 
             statement.close();
             con.close();
@@ -172,16 +164,16 @@ public class AssignmentDB {
         boolean isSuccess = false;
         try {
             connection = getConnection();
-            //2. get the prepared statement
+            // 2. get the prepared statement
             String sql = "SELECT * FROM USERTABLE";
             preparedStatement = connection.prepareStatement(sql);
             ResultSet rs = null;
             UserBean userBean = null;
             preparedStatement.executeQuery();
             rs = preparedStatement.getResultSet();
-            //3. update the placeholder with id
-//            preparedStatement.setString(1, tel);
-            //4. execute the query and assign to the result;
+            // 3. update the placeholder with id
+            // preparedStatement.setString(1, tel);
+            // 4. execute the query and assign to the result;
             while (rs.next()) {
                 // If the record exist set the record detail to the customer bean
                 userBean = new UserBean();
@@ -273,7 +265,7 @@ public class AssignmentDB {
             con = getConnection();
             String SQL = "INSERT INTO RESERVATIONREQUEST(submitted_by,type) VALUES(?,?)";
             preparedStatement = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-//            preparedStatement.setString(1, equipment_id);
+            // preparedStatement.setString(1, equipment_id);
             preparedStatement.setInt(1, submitted_by);
             preparedStatement.setInt(2, type);
             preparedStatement.executeUpdate();
@@ -404,7 +396,7 @@ public class AssignmentDB {
     }
 
     public ArrayList<ReservationRequestBean> listAllReservationRequestByUser(int id) {
-        //screw SQL injection
+        // screw SQL injection
         String sql = "SELECT * FROM ReservationRequest where id = " + id;
         return listAllReservationRequest_inner(sql);
     }
@@ -429,12 +421,12 @@ public class AssignmentDB {
             while (rs.next()) {
                 ReservationRequestBean reservation = getReservationRequest(rs.getInt("id"));
                 System.out.println("Line 405:" + reservation);
-//                cb = new ReservationRequestBean();
-//                cb.setId(rs.getInt("id"));
-//                cb.setsubmitted_by(rs.getInt("submitted_by"));
-////                cb.setequipment_id(rs.getString("equipment_id")); mLn
-//                //todo: Return a list of equipments
-//                cb.settype(rs.getInt("type"));
+                // cb = new ReservationRequestBean();
+                // cb.setId(rs.getInt("id"));
+                // cb.setsubmitted_by(rs.getInt("submitted_by"));
+                //// cb.setequipment_id(rs.getString("equipment_id")); mLn
+                // //todo: Return a list of equipments
+                // cb.settype(rs.getInt("type"));
                 arrayList_cb.add(reservation);
             }
             preparedStatement.close();
@@ -522,8 +514,8 @@ public class AssignmentDB {
         }
         return arrayList_cb;
     }
-    
-        public BorrowRecordBean getBorrowRecord(int id) {
+
+    public BorrowRecordBean getBorrowRecord(int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         BorrowRecordBean borrowRecord = null;
@@ -559,8 +551,6 @@ public class AssignmentDB {
         }
         return borrowRecord;
     }
-    
-    
 
     public ArrayList<ReservationRequestBean> QueryReservationRequestById(int id) {
         Connection con = null;
@@ -579,7 +569,7 @@ public class AssignmentDB {
                 cb = new ReservationRequestBean();
                 cb.setId(rs.getInt("id"));
                 cb.setsubmitted_by(rs.getInt("submitted_by"));
-//                cb.setequipment_id(rs.getString("equipment_id"));
+                // cb.setequipment_id(rs.getString("equipment_id"));
                 cb.settype(rs.getInt("type"));
                 arrayList_cb.add(cb);
             }
@@ -699,6 +689,38 @@ public class AssignmentDB {
         return cb;
     }
 
+    public UserBean getUserByName(String name) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        UserBean cb = null;
+        try {
+            connection = getConnection();
+            String sql = "SELECT * FROM USERTABLE WHERE USERNAME=?";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            ResultSet rs = null;
+            preparedStatement.executeQuery();
+            rs = preparedStatement.getResultSet();
+            if (rs.next()) {
+                cb = new UserBean();
+                cb.setId(rs.getInt("id"));
+                cb.setUsername(rs.getString("username"));
+                cb.setPassword(rs.getString("password"));
+                cb.setType(rs.getInt("type"));
+            }
+            preparedStatement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return cb;
+    }
+
     public ReservationRequestBean getReservationRequest(int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -718,10 +740,10 @@ public class AssignmentDB {
                 System.out.println("Line 652" + reservation == null);
                 reservation.setId(id);
                 reservation.setsubmitted_by(rs.getInt("submitted_by"));
-                //approved_by???
-//                cb.setequipment_id(rs.getString("equipment_id")); not used
+                // approved_by???
+                // cb.setequipment_id(rs.getString("equipment_id")); not used
                 reservation.settype(rs.getInt("type"));
-//                reservation.setEqxuipments(equipments);
+                // reservation.setEqxuipments(equipments);
             }
             preparedStatement.close();
             connection.close();
@@ -768,8 +790,8 @@ public class AssignmentDB {
 
     public void setEquipmentByReservation(int reservation_id, ArrayList<EquipmentBean> equipments) {
         /**
-         * doesn't check for duplicate submission for equipment_id in equipments
-         * insert into reservationequipment (reservation_id, equipment_id)
+         * doesn't check for duplicate submission for equipment_id in equipments insert
+         * into reservationequipment (reservation_id, equipment_id)
          *
          */
 
@@ -853,10 +875,11 @@ public class AssignmentDB {
         PreparedStatement pstmt = null;
         try {
             con = getConnection();
-//            String SQL = "Update ReservationRequest set equipment_id = ?, type = ?, submitted_by = ? where id =?";
+            // String SQL = "Update ReservationRequest set equipment_id = ?, type = ?,
+            // submitted_by = ? where id =?";
             String SQL = "Update ReservationRequest set type = ?, submitted_by = ? where id =?";
             pstmt = con.prepareStatement(SQL);
-//            pstmt.setString(1, cb.getequipment_id());
+            // pstmt.setString(1, cb.getequipment_id());
             pstmt.setInt(1, cb.gettype());
             pstmt.setInt(2, cb.getsubmitted_by());
             pstmt.setInt(3, cb.getId());

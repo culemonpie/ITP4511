@@ -18,7 +18,7 @@
 
 
 		<h5><%=title%></h5>
-		<form class="form-signin" action="loginServlet" method="post">
+		<form class="form-signin" action="LoginServlet" method="post">
 		    <div class="form-label-group">
 			<label for="inputEmail">Username</label>
 			<input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>

@@ -19,9 +19,6 @@ public class CreateDB {
 
 
         AssignmentDB db = new AssignmentDB();
-//        System.out.println("==Delete Table==");
-//        db.dropTable();
-        System.out.println("==Create Table==");
         db.createTable();
         System.out.println("==Success==");
     }
