@@ -21,7 +21,7 @@ import ivpet.*;
 public class AssignmentDB {
 
     /**
-     * 4511EA APP AWSDAWSD123
+     * 4511EA APP AWSDAWSD123, currently hard coded but can be changed
      */
     private String url = "";
     private String username = "";

@@ -52,7 +52,6 @@ public class LoginServlet extends HttpServlet {
                 rd = getServletContext().getRequestDispatcher("/index.jsp");
                 rd.forward(request, response);
             } else {
-                out.println("120kg");
                 request.setAttribute("message", "Incorrect credentials");
                 RequestDispatcher rd;
                 rd = getServletContext().getRequestDispatcher("/login.jsp");

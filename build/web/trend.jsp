@@ -1,7 +1,13 @@
 <!DOCTYPE html>
+<%@page import="ivpet.db.AssignmentDB, ivpet.bean.*" %>
+
 
 <%
     String title = "Trending items";
+
+    AssignmentDB db = new AssignmentDB();
+
+    String sql = "select * from equipment order by tag";
 
 %>
 
@@ -11,28 +17,22 @@
 <div class="py-3">
     <div class="container">
         <div class="row">
-            <div>
-                <h2><%=title%></h2>
-            </div>
-            <br>
-            <div>
-                Below are the trending items:
-            </div>
+            <h2><%=title%></h2>
+            <hr>
+            Below are the trending items by tags:
             <table class="table table-extra-condensed table-hover">
                 <tr>
-                    <th>Name</th>
-                    <th># of borrows in past 6 months</th>
+                    <th>Equipment</th>
+                    <th>Tag</th>
                 </tr>
-                <% for (int i = 5; i > 0; i--) {%>
+                <% for (EquipmentBean equipment : db.listAllEquipment_inner(sql)) {%>
                 <tr>
-                    <td>HDMI Cable</td>
-                    <td><%=i*10%></td>
+                    <td><%=equipment.getname()%></td>
+                    <td><%=equipment.getTag()%></td>
                 </tr>
                 <% }%>
             </table>
             <hr>
-            Remarks: select name, count(*) from borrowrecords inner join equipment on borrowrecords.equipment_id = equipment.id group by borrowrecords.equipment_id
-
         </div>
     </div>
 </div>

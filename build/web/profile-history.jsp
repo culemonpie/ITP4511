@@ -12,11 +12,6 @@
 	<div class="row">
 	    <div class="col-md-3" id="profile_sidebar">
 		<ul class="list-group">
-		    <li class=" border-0 list-group-item d-flex justify-content-between align-items-center active">
-			<a href="profile-checkout.jsp">
-			    Checked Out
-			</a>
-		    </li>
 		    <li class=" border-0 list-group-item d-flex justify-content-between align-items-center">
 			<a href="profile-reservation.jsp">
 			    Reservations
@@ -51,6 +46,13 @@
 			<th>Returned Date</th>
 			<th>Status</th>
 		    </tr>
+                    
+                    <%
+                        /*
+                        select * from 
+                        */
+                        %>
+                    
 		    <tr>
 			<td><a href="#">B0004</a></td>
 			<td>Ruler</td>
@@ -84,8 +86,6 @@
 			<td>Returned (Overdue)</td>
 		    </tr>
 		</table>
-
-		Completed items will be listed in the history section.
 
 	    </div>
 	</div>
