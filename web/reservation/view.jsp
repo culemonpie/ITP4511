@@ -51,7 +51,7 @@
                         <%
                             String msg = "";
                             for (EquipmentBean e : db.getEquipmentsByReservation(reservation.getId())) {
-                                        msg += String.format("\n\t%s: (Status: %s)", e.getname(), e.getStatusVerbose() );
+                                        msg += String.format("\n\t%s (Status: %s)<br>", e.getname(), e.getStatusVerbose() );
                                     }
                             out.println(msg);
                         %>

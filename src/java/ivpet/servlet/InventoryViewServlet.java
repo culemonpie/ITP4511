@@ -38,9 +38,6 @@ public class InventoryViewServlet extends AbstractServlet {
 
 	    //Obtain the id
 	    String id = request.getParameter("id");
-	    
-	    
-
 	    request.setAttribute("title", String.format("View inventory #%s", id));
 	    request.setAttribute("id", id);
 	    String url = "/inventory/view.jsp";

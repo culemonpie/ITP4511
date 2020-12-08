@@ -141,12 +141,18 @@ public class ReservationViewServlet extends AbstractServlet {
 
         } else if (action.equals("reject")) {
             /*
-            
+            1. Set status to rejected
+            2. show message
              */
+
+            String id = request.getParameter("id");
+            ReservationRequestBean reservation = db.getReservationRequest(Integer.parseInt(id));
+            reservation.settype(2);//approved
+            db.editReservationRequestRecord(reservation);
+
+            request.setAttribute("message", "Rejected");
+
         }
-
-        request.setAttribute("message", action);
-
         //do not change
         processRequest(request, response);
     }

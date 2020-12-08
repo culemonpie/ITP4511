@@ -10,12 +10,13 @@
     if (request.getAttribute("equipments") != null) {
         equipments = (ArrayList) request.getAttribute("equipments");
     } else {
-        equipments = db.listAllEquipment();
+        equipments = db.listAllEquipment_inner("SELECT * FROM Equipment WHERE IS_LISTED = TRUE");
+//        equipments = db.listAllEquipment();
     }
 
     String title = (String) request.getAttribute("title");
     if (title == null) {
-        title = "List inventory (admin)";
+        title = "List inventory";
     }
 %>
 <jsp:include page="/WEB-INF/header.jsp">  
@@ -44,7 +45,6 @@
                         <td><%=equipment.getStatusVerbose()%></td>
                         <td>
                             <a href="${pageContext.request.contextPath}/addToCart?id=<%=equipment.getid()%>" class="btn btn-primary btn-sm">Add to cart</a>
-                            <a href="${pageContext.request.contextPath}/inventory/update?id=<%=equipment.getid()%>" class="btn btn-default btn-sm">Update</a>
                         </td>
                     </tr>
                     <% }%>
