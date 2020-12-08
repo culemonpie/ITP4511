@@ -38,50 +38,7 @@
 	    <div class="col-md-9">
 		<h1> Checked out </h1>
 
-		<table class="table">
-		    <tr>
-			<th>ID</th>
-			<th>Item</th>
-			<th>Checked out</th>
-			<th>Due Date</th>
-			<th>Returned Date</th>
-			<th>Status</th>
-		    </tr>
-		    <tr>
-			<td><a href="#">B0004</a></td>
-			<td>Ruler</td>
-			<td>2020-05-21 08:42:33</td>
-			<td>2020-06-08</td>
-			<td>2020-06-01 13:26:10</td>
-			<td>Returned</td>
-		    </tr>
-		    <tr>
-			<td><a href="#">B0003</a></td>
-			<td>Ruler</td>
-			<td>2020-05-21 08:42:33</td>
-			<td>2020-06-08</td>
-			<td>2020-06-01 13:26:10</td>
-			<td>Returned</td>
-		    </tr>
-		    <tr class="table-danger">
-			<td><a href="#">B0002</a></td>
-			<td>Ruler</td>
-			<td>2020-05-21 08:42:33</td>
-			<td>2020-06-08</td>
-			<td>2020-06-01 13:26:10</td>
-			<td>Returned (Overdue)</td>
-		    </tr>
-		    <tr class="table-danger">
-			<td><a href="#">B0001</a></td>
-			<td>Ruler</td>
-			<td>2020-05-21 08:42:33</td>
-			<td>2020-06-08</td>
-			<td>2020-06-01 13:26:10</td>
-			<td>Returned (Overdue)</td>
-		    </tr>
-		</table>
-
-		Completed items will be listed in the history section.
+                (Please refer to history section)
 
 	    </div>
 	</div>

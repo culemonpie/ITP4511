@@ -23,7 +23,9 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
-public AssignmentDB db=new AssignmentDB();
+
+    public AssignmentDB db = new AssignmentDB();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,19 +40,24 @@ public AssignmentDB db=new AssignmentDB();
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        UserBean bean = db.getUserByName(username);
-        if (bean.getPassword().equals(password)) {
-            HttpSession session = request.getSession();
-            session.setAttribute("username", username);
-            session.setAttribute("id", bean.getId());
-            session.setAttribute("type", bean.getType());
-            RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/index.jsp");
-            rd.forward(request, response);
-
-        }
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            UserBean bean = db.getUserByName(username);
+            if (bean != null && bean.getPassword().equals(password)) {
+                HttpSession session = request.getSession();
+                session.setAttribute("username", username);
+                session.setAttribute("id", bean.getId());
+                session.setAttribute("type", bean.getType());
+                RequestDispatcher rd;
+                rd = getServletContext().getRequestDispatcher("/index.jsp");
+                rd.forward(request, response);
+            } else {
+                out.println("120kg");
+                request.setAttribute("message", "Incorrect credentials");
+                RequestDispatcher rd;
+                rd = getServletContext().getRequestDispatcher("/login.jsp");
+                rd.forward(request, response);
+            }
         }
     }
 
