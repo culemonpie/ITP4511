@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -117,7 +118,8 @@ public class ReservationViewServlet extends AbstractServlet {
              */
 
             //1
-            int user_id = 1; //to be replaced
+            HttpSession session = request.getSession();
+            int user_id = (Integer)session.getAttribute("id"); //to be replaced
             String id = request.getParameter("id");
             ReservationRequestBean reservation = db.getReservationRequest(Integer.parseInt(id));
             reservation.settype(1);//approved

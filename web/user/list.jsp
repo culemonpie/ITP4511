@@ -44,7 +44,7 @@
                                 <td><%=user.getRole()%></td>
                                 <td>Yes</td>			
                                 <td>No</td>			
-                                <td><input type="checkbox" name="user" value="<%=user.getId()%>"></td>			
+                                <td><a href="${pageContext.request.contextPath}/profile-history.jsp?id=<%=user.getId()%>">History</a></td>			
                             </tr>
                             <% }%>
                         </table>

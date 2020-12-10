@@ -77,7 +77,7 @@ public class AddToCartServlet extends AbstractServlet {
                  */
 
                 //1
-                int user_id = 1; //to be replaced
+                int user_id = (Integer)session.getAttribute("id"); //to be replaced
                 int reservation_id = db.addReservationRequest(user_id, 0);
 
                 //2

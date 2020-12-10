@@ -17,77 +17,83 @@
 </jsp:include>
 <div class="py-2">
     <div class="container">
-	<div class="row">
-	    <div class="col-md-3" id="profile_sidebar">
-		<ul class="list-group">
-		    <li class=" border-0 list-group-item d-flex justify-content-between align-items-center">
-			<a href="profile-history.jsp">
-			    History
-			</a>
-		    </li>
-		    <li class=" border-0 list-group-item d-flex justify-content-between align-items-center">
-			<a href="cart.jsp">
-			    Cart
-			</a>
-		    </li>
-		    <li class=" border-0 list-group-item d-flex justify-content-between align-items-center">
-			<a href="profile-contact.jsp">
-			    Contact
-			</a>
-		    </li>
-		</ul>
-	    </div>
-	    <div class="col-md-9">
-		<h1> <%=title%> </h1>
+        <div class="row">
+            <div class="col-md-3" id="profile_sidebar">
+                <ul class="list-group">
+                    <li class=" border-0 list-group-item d-flex justify-content-between align-items-center">
+                        <a href="profile-history.jsp">
+                            History
+                        </a>
+                    </li>
+                    <li class=" border-0 list-group-item d-flex justify-content-between align-items-center">
+                        <a href="cart.jsp">
+                            Cart
+                        </a>
+                    </li>
+                    <li class=" border-0 list-group-item d-flex justify-content-between align-items-center">
+                        <a href="profile-contact.jsp">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <h1> <%=title%> </h1>
 
-		<table class="table">
-		    <tr>
-			<th>ID</th>
-			<th>Item</th>
-			<th>Checked out</th>
-			<th>Due Date</th>
-			<th>Returned Date</th>
-			<th>Status</th>
+                <table class="table">
+                    <tr>
+                        <th>ID</th>
+                        <th>Item</th>
+                        <th>Checked out</th>
+                        <th>Due Date</th>
+                        <th>Returned Date</th>
+                        <th>Status</th>
                         <th>Return</th>
-		    </tr>
-                    
+                    </tr>
+
                     <%
-    String message = (String) request.getAttribute("message");
-    int i=  Integer.parseInt(session.getAttribute("id").toString());
-    AssignmentDB db = new AssignmentDB();
-    ArrayList<BorrowRecordBean> LB=db.listAllBorrowRecord();
-    ArrayList<ReservationRequestBean> R=db.listAllReservationRequestBySub(i);
+                        String message = (String) request.getAttribute("message");
+                        int i;
+                        if (request.getParameter("id") != null) {
+                            i = Integer.parseInt(request.getParameter("id"));
+                        } else {
+                            i = Integer.parseInt(session.getAttribute("id").toString());
+                        }
+                        AssignmentDB db = new AssignmentDB();
+                        ArrayList<BorrowRecordBean> LB = db.listAllBorrowRecord();
+                        ArrayList<ReservationRequestBean> R = db.listAllReservationRequestBySub(i);
 
 //    ArrayList<BorrowRecordBean> BorrowRecordBean = db.QueryBorrowRecordById(i);
-    String item="";
-    for(int j=0;j<LB.size();j++){
-        int s=LB.get(j).getId();
-        ArrayList<ReservationEquipmentBean> ReservationEquipment = db.listReservationEquipmentByid(s);
-        for(int a=0;a<ReservationEquipment.size();a++){
-         EquipmentBean Equipment = db.getEquipment(ReservationEquipment.get(a).geEid());
-    item+=Equipment.getname()+" ";
-        }
-    }
-    out.print("<form class=\"form-signin\" action=\"ReturnServlet\" method=\"GET\">");
-        for(int j=0;j<LB.size();j++){
-    for(int k=0;k<R.size();k++){
-    if(LB.get(j).getId()==R.get(k).getId()){
-        out.println("<tr><td>"+LB.get(j).getId()+"</td><td>"+item+"</td><td>"+LB.get(j).getCheckout_date()+"</td><td>"+LB.get(j).getDue_date()+"</td><td>"+LB.get(j).getReturn_date()+"</td><td>"+LB.get(j).getStatusType()+"</td>");
-        if(LB.get(j).getReturn_date()==null){
-        out.print("<td><button value=\""+LB.get(j).getId()+"\"id=\"id\" name=\"id\"class=\"btn  btn-primary \" type=\"submit\">retuen</button></td></tr>");
-        }
-out.print("</tr>");
-    }
-    }
-    }
-        out.print("</form>");
-       %>
-                    
-		 
-		</table>
+                        String item = "";
+                        for (int j = 0; j < LB.size(); j++) {
+                            int s = LB.get(j).getId();
+                            ArrayList<ReservationEquipmentBean> ReservationEquipment = db.listReservationEquipmentByid(s);
+                            item = "";
+                            for (int a = 0; a < ReservationEquipment.size(); a++) {
+                                EquipmentBean Equipment = db.getEquipment(ReservationEquipment.get(a).geEid());
+                                item += Equipment.getname() + "<br>";
+                            }
+                        }
 
-	    </div>
-	</div>
+                        for (int j = 0; j < LB.size(); j++) {
+                            for (int k = 0; k < R.size(); k++) {
+                                if (LB.get(j).getId() == R.get(k).getId()) {
+                                    String overdue_check = LB.get(j).getStatusType().equals("is overdue") ? " class='table-danger'" : "";
+                                    out.println("<tr" + overdue_check + "><td>" + LB.get(j).getId() + "</td><td>" + item + "</td><td>" + LB.get(j).getCheckout_date() + "</td><td>" + LB.get(j).getDue_date() + "</td><td>" + LB.get(j).getReturn_date() + "</td><td>" + LB.get(j).getStatusType() + "</td>");
+                                    if (LB.get(j).getReturn_date() == null) {
+                                        out.print("<td><button value=\"" + LB.get(j).getId() + "\"id=\"id\" name=\"id\"class=\"btn  btn-primary \" type=\"submit\">Return</button></td></tr>");
+                                    }
+                                    out.print("</tr>");
+                                }
+                            }
+                        }
+                    %>
+
+
+                </table>
+
+            </div>
+        </div>
     </div>
 
 </div><jsp:include page="/WEB-INF/footer.jsp" />          

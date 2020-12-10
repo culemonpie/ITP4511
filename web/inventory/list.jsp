@@ -7,13 +7,11 @@
 
     ArrayList<EquipmentBean> equipments;
 
-    if (request.getAttribute("equipments") != null) {
-        equipments = (ArrayList) request.getAttribute("equipments");
+    if (request.getParameter("search") != null) {
+        equipments = db.listAllEquipment_inner("SELECT * FROM Equipment WHERE IS_LISTED = TRUE and upper(name) like upper('%" + request.getParameter("search") + "%')");
     } else {
         equipments = db.listAllEquipment_inner("SELECT * FROM Equipment WHERE IS_LISTED = TRUE");
-//        equipments = db.listAllEquipment();
     }
-
     String title = (String) request.getAttribute("title");
     if (title == null) {
         title = "List inventory";

@@ -21,7 +21,9 @@
             <div class="col-12">
                 <ivpet:Alert message="<%=message%>" context="success" />
                 <h2 class="">IVPET <small class="text-muted">Equipment Borrowing System</small></h2>
-                <input type="text" class="form-control" placeholder='Enter search keyword...'>
+                <form action="${pageContext.request.contextPath}/inventory/list.jsp">
+                    <input type="text" name="search" class="form-control" placeholder='Enter search keyword...'>
+                </form>
                 <hr>
                 <table class="table table-extra-condensed">
 

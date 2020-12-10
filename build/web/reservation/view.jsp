@@ -85,6 +85,7 @@
                     </div>
                 </div>
 
+                <% if (session.getAttribute("type") != null && (Integer)session.getAttribute("type") > 1){ %>
                 <div class="row mt-2">
                     <form method="POST">
 
@@ -95,6 +96,7 @@
                     <div class="col-12">
                     </div>
                 </div>
+                <% } %>
 
             </div>
         </div>

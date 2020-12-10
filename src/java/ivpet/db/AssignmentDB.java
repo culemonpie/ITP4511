@@ -114,7 +114,6 @@ public class AssignmentDB {
             //
             // sql = "DROP TABLE USERTABLE";
             // statement.execute(sql);
-
             statement.close();
             con.close();
         } catch (SQLException ex) {
@@ -403,6 +402,7 @@ public class AssignmentDB {
         String sql = "SELECT * FROM ReservationRequest where id = " + id;
         return listAllReservationRequest_inner(sql);
     }
+
     public ArrayList<ReservationRequestBean> listAllReservationRequestBySub(int id) {
         // screw SQL injection
         String sql = "SELECT * FROM ReservationRequest where submitted_by = " + id;
@@ -451,13 +451,18 @@ public class AssignmentDB {
     }
 
     public ArrayList<BorrowRecordBean> listAllBorrowRecord() {
+        String sql = "SELECT * FROM BorrowRecords";
+        return listAllBorrowRecord_inner(sql);
+
+    }
+
+    public ArrayList<BorrowRecordBean> listAllBorrowRecord_inner(String sql) {
         Connection con = null;
         PreparedStatement pstmt = null;
         BorrowRecordBean cb = null;
         ArrayList<BorrowRecordBean> arrayList_cb = new ArrayList<BorrowRecordBean>();
         try {
             con = getConnection();
-            String sql = "SELECT * FROM BorrowRecordS ";
             pstmt = con.prepareStatement(sql);
             ResultSet rs = null;
             pstmt.executeQuery();
@@ -798,8 +803,8 @@ public class AssignmentDB {
 
     public void setEquipmentByReservation(int reservation_id, ArrayList<EquipmentBean> equipments) {
         /**
-         * doesn't check for duplicate submission for equipment_id in equipments insert
-         * into reservationequipment (reservation_id, equipment_id)
+         * doesn't check for duplicate submission for equipment_id in equipments
+         * insert into reservationequipment (reservation_id, equipment_id)
          *
          */
 
@@ -930,7 +935,8 @@ public class AssignmentDB {
             ex.printStackTrace();
         }
     }
-        public ArrayList<ReservationEquipmentBean> listReservationEquipmentByid(int id) {
+
+    public ArrayList<ReservationEquipmentBean> listReservationEquipmentByid(int id) {
         Connection con = null;
         PreparedStatement pstmt = null;
         ReservationEquipmentBean cb = null;
@@ -961,7 +967,8 @@ public class AssignmentDB {
         }
         return arrayList_cb;
     }
-            public void returnBorrowRecord(int id) {
+
+    public void returnBorrowRecord(int id) {
         Connection con = null;
         PreparedStatement pstmt = null;
         LocalDate n = LocalDate.now();
@@ -984,5 +991,5 @@ public class AssignmentDB {
             ex.printStackTrace();
         }
     }
-  
+
 }
