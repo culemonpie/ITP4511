@@ -19,11 +19,6 @@
 	<div class="row">
 	    <div class="col-md-3" id="profile_sidebar">
 		<ul class="list-group">
-		    <li class=" border-0 list-group-item d-flex justify-content-between align-items-center active">
-			<a href="profile-checkout.jsp">
-			    Checked Out
-			</a>
-		    </li>
 		    <li class=" border-0 list-group-item d-flex justify-content-between align-items-center">
 			<a href="profile-reservation.jsp">
 			    Reservations
@@ -65,13 +60,13 @@ for(int j=0;j<R.size();j++){
     out.print( "<div class=\"card\">"+
 "		    <div class=\"card-body\">"+
 "			<h5>#"+R.get(j).getId()+"</h5>"+
-"			<a href=\""+request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/ITP4511/reservation/view?id="+R.get(j).getId()+"\">View</a> | <a href=\"#\">Edit</a>"+
+"			<a href=\""+request.getContextPath()+"/reservation/view?id="+R.get(j).getId()+"\">View</a> | <a href=\"#\">Edit</a>"+
 ""+
 "			<div class=\"row\">"+
-"			    <div class=\"col-12 col-sm-6 col-md-4\">"+
-"				"+R.get(j).getsubmitted_by()+
+"			    <div class=\"col-12 col-sm-6 col-md-4\">Submitted By"+
 "			    </div>"+
 "			    <div class=\"col-12 col-sm-6 col-md-8\">"+
+        R.get(j).getsubmitted_by()+
 "			    </div>"+
 "			</div>"+
 ""+
@@ -80,7 +75,7 @@ for(int j=0;j<R.size();j++){
 "				Status"+
 "			    </div>"+
 "			    <div class=\"col-12 col-sm-6 col-md-8\">"+
-"				"+R.get(j).gettype()+
+"				"+R.get(j).getTypeVerbose()+
 "			    </div>"+
 "			</div>"+
 ""+

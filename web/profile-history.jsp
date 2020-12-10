@@ -21,11 +21,6 @@
 	    <div class="col-md-3" id="profile_sidebar">
 		<ul class="list-group">
 		    <li class=" border-0 list-group-item d-flex justify-content-between align-items-center">
-			<a href="profile-reservation.jsp">
-			    Reservations
-			</a>
-		    </li>
-		    <li class=" border-0 list-group-item d-flex justify-content-between align-items-center">
 			<a href="profile-history.jsp">
 			    History
 			</a>
