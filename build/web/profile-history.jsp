@@ -53,6 +53,7 @@
 			<th>Due Date</th>
 			<th>Returned Date</th>
 			<th>Status</th>
+                        <th>Return</th>
 		    </tr>
                     
                     <%
@@ -72,14 +73,19 @@
     item+=Equipment.getname()+" ";
         }
     }
+    out.print("<form class=\"form-signin\" action=\"ReturnServlet\" method=\"GET\">");
         for(int j=0;j<LB.size();j++){
     for(int k=0;k<R.size();k++){
     if(LB.get(j).getId()==R.get(k).getId()){
-        out.println("<tr><td>"+LB.get(j).getId()+"</td><td>"+item+"</td><td>"+LB.get(j).getCheckout_date()+"</td><td>"+LB.get(j).getDue_date()+"</td><td>"+LB.get(j).getReturn_date()+"</td><td>"+LB.get(j).getStatusType()+"</td></tr>");
-
+        out.println("<tr><td>"+LB.get(j).getId()+"</td><td>"+item+"</td><td>"+LB.get(j).getCheckout_date()+"</td><td>"+LB.get(j).getDue_date()+"</td><td>"+LB.get(j).getReturn_date()+"</td><td>"+LB.get(j).getStatusType()+"</td>");
+        if(LB.get(j).getReturn_date()==null){
+        out.print("<td><button value=\""+LB.get(j).getId()+"\"id=\"id\" name=\"id\"class=\"btn  btn-primary \" type=\"submit\">retuen</button></td></tr>");
+        }
+out.print("</tr>");
     }
     }
     }
+        out.print("</form>");
        %>
                     
 		 

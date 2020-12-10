@@ -18,6 +18,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import ivpet.*;
 import ivpet.bean.ReservationEquipmentBean;
+import java.time.LocalDate;
 
 public class AssignmentDB {
 
@@ -960,6 +961,28 @@ public class AssignmentDB {
         }
         return arrayList_cb;
     }
-        
+            public void returnBorrowRecord(int id) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        LocalDate n = LocalDate.now();
+        try {
+            con = getConnection();
+            String SQL = "Update BorrowRecordS set Status= ?, Return_date = ? where id =?";
+            pstmt = con.prepareStatement(SQL);
+            pstmt.setInt(1, 1);
+            pstmt.setString(2, n.toString());
+            pstmt.setInt(3, id);
+            pstmt.executeUpdate();
+            pstmt.close();
+            con.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
   
 }

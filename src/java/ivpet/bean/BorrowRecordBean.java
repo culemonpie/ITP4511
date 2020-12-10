@@ -89,6 +89,7 @@ public class BorrowRecordBean implements Serializable {
             if(return_date==null){
             return "is overdue";}
         }
+
         if(status==0){
         return "on lease";
         }else if(status==1){
