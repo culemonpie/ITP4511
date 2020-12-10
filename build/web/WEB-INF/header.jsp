@@ -55,7 +55,8 @@
                                     <a class="dropdown-item" href="#">Lease</a>
                                     <a class="dropdown-item" href="${pageContext.request.contextPath}/reservation/list.jsp">Reservations</a>
                                     <a class="dropdown-item" href="${pageContext.request.contextPath}/analytic/overdue.jsp">Overdue records</a>
-                                    <a class="dropdown-item" href="#">Tags</a>
+                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/analytic/statistics.jsp">Statistics</a>
+                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/tags.jsp">Tags</a>
                                 </div>
                             </li>
                             <% }%>
