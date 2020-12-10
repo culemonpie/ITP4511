@@ -41,8 +41,9 @@
                                 if (session.getAttribute("username") != null) {
                             %>
 
-                            <% if (session.getAttribute("type") != null) { %>
+                            <% if ( ((Integer)(session.getAttribute("type"))) > 1) { %>
                             <!--Links for Technician-->
+                            <!-- Userx:<%=session.getAttribute("type")%>-->
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-tools"></i>
@@ -67,7 +68,7 @@
                                     <%=session.getAttribute("username")%>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/profile-checkout.jsp">Checked out</a>
+                                    <!--<a class="dropdown-item" href="${pageContext.request.contextPath}/profile-checkout.jsp">Checked out</a>-->
                                     <a class="dropdown-item" href="${pageContext.request.contextPath}/profile-reservation.jsp">Reservations</a>
                                     <a class="dropdown-item" href="${pageContext.request.contextPath}/profile-history.jsp">History</a>
                                     <a class="dropdown-item" href="${pageContext.request.contextPath}/cart.jsp">Cart</a>
@@ -79,7 +80,7 @@
                             <%
                                 } else {
 
-                                    out.println("<li class='nav-item'> <a class='nav-link' href='login.jsp'>Login</a> </li>");
+                                    out.println("<li class='nav-item'> <a class='nav-link' href='"+ request.getContextPath() +"/login.jsp'>Login</a> </li>");
                                 }
                             %>
 
