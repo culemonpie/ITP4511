@@ -1,3 +1,11 @@
+<%@page import="ivpet.bean.ReservationRequestBean"%>
+<%@page import="ivpet.bean.ReservationEquipmentBean"%>
+<%@page import="ivpet.bean.EquipmentBean"%>
+<%@page import="ivpet.bean.BorrowRecordBean"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="ivpet.db.AssignmentDB"%>
+<%@page import="ivpet.db.AssignmentDB"%>
 <!DOCTYPE html>
 
 <%
@@ -48,43 +56,33 @@
 		    </tr>
                     
                     <%
-                        /*
-                        select * from 
-                        */
-                        %>
+    String message = (String) request.getAttribute("message");
+    int i=  Integer.parseInt(session.getAttribute("id").toString());
+    AssignmentDB db = new AssignmentDB();
+    ArrayList<BorrowRecordBean> LB=db.listAllBorrowRecord();
+    ArrayList<ReservationRequestBean> R=db.listAllReservationRequestBySub(i);
+
+//    ArrayList<BorrowRecordBean> BorrowRecordBean = db.QueryBorrowRecordById(i);
+    String item="";
+    for(int j=0;j<LB.size();j++){
+        int s=LB.get(j).getId();
+        ArrayList<ReservationEquipmentBean> ReservationEquipment = db.listReservationEquipmentByid(s);
+        for(int a=0;a<ReservationEquipment.size();a++){
+         EquipmentBean Equipment = db.getEquipment(ReservationEquipment.get(a).geEid());
+    item+=Equipment.getname()+" ";
+        }
+    }
+        for(int j=0;j<LB.size();j++){
+    for(int k=0;k<R.size();k++){
+    if(LB.get(j).getId()==R.get(k).getId()){
+        out.println("<tr><td>"+LB.get(j).getId()+"</td><td>"+item+"</td><td>"+LB.get(j).getCheckout_date()+"</td><td>"+LB.get(j).getDue_date()+"</td><td>"+LB.get(j).getReturn_date()+"</td><td>"+LB.get(j).getStatusType()+"</td></tr>");
+
+    }
+    }
+    }
+       %>
                     
-		    <tr>
-			<td><a href="#">B0004</a></td>
-			<td>Ruler</td>
-			<td>2020-05-21 08:42:33</td>
-			<td>2020-06-08</td>
-			<td>2020-06-01 13:26:10</td>
-			<td>Returned</td>
-		    </tr>
-		    <tr>
-			<td><a href="#">B0003</a></td>
-			<td>Ruler</td>
-			<td>2020-05-21 08:42:33</td>
-			<td>2020-06-08</td>
-			<td>2020-06-01 13:26:10</td>
-			<td>Returned</td>
-		    </tr>
-		    <tr class="table-danger">
-			<td><a href="#">B0002</a></td>
-			<td>Ruler</td>
-			<td>2020-05-21 08:42:33</td>
-			<td>2020-06-08</td>
-			<td>2020-06-01 13:26:10</td>
-			<td>Returned (Overdue)</td>
-		    </tr>
-		    <tr class="table-danger">
-			<td><a href="#">B0001</a></td>
-			<td>Ruler</td>
-			<td>2020-05-21 08:42:33</td>
-			<td>2020-06-08</td>
-			<td>2020-06-01 13:26:10</td>
-			<td>Returned (Overdue)</td>
-		    </tr>
+		 
 		</table>
 
 	    </div>

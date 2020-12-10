@@ -18,6 +18,6 @@ public class TestDB {
 		String username = "APP";
 		String password = "AWSDAWSD123";
 AssignmentDB db = new AssignmentDB();
-System.out.println(db.getUserByName("BB").getUsername());
+db.addBorrowRecord(2, 0, "2020-12-10", "2020-12-10", Boolean.TRUE, 1);
 	}
 }

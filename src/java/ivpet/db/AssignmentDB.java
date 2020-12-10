@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import ivpet.*;
+import ivpet.bean.ReservationEquipmentBean;
 
 public class AssignmentDB {
 
@@ -202,13 +203,14 @@ public class AssignmentDB {
         boolean isSuccess = false;
         try {
             con = getConnection();
-            String SQL = "INSERT INTO BORROWRECORDS(id,Status,checkout_date,due_date,approved_by) VALUES(?,?,?,?,?)";
+            String SQL = "INSERT INTO BORROWRECORDS(id,Status,checkout_date,due_date,return_date,is_overdue,approved_by) VALUES(?,?,?,?,null,?,?)";
             pstmt = con.prepareStatement(SQL);
             pstmt.setInt(1, id);
             pstmt.setInt(2, Status);
             pstmt.setString(3, checkout_date);
             pstmt.setString(4, due_date);
-            pstmt.setInt(5, approved_by);
+            pstmt.setBoolean(5, is_overdue);
+            pstmt.setInt(6, approved_by);
             int rowCount = pstmt.executeUpdate();
             if (rowCount >= 1) {
                 isSuccess = true;
@@ -398,6 +400,11 @@ public class AssignmentDB {
     public ArrayList<ReservationRequestBean> listAllReservationRequestByUser(int id) {
         // screw SQL injection
         String sql = "SELECT * FROM ReservationRequest where id = " + id;
+        return listAllReservationRequest_inner(sql);
+    }
+    public ArrayList<ReservationRequestBean> listAllReservationRequestBySub(int id) {
+        // screw SQL injection
+        String sql = "SELECT * FROM ReservationRequest where submitted_by = " + id;
         return listAllReservationRequest_inner(sql);
     }
 
@@ -922,4 +929,37 @@ public class AssignmentDB {
             ex.printStackTrace();
         }
     }
+        public ArrayList<ReservationEquipmentBean> listReservationEquipmentByid(int id) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ReservationEquipmentBean cb = null;
+        ArrayList<ReservationEquipmentBean> arrayList_cb = new ArrayList<ReservationEquipmentBean>();
+        try {
+            con = getConnection();
+            String sql = "SELECT * FROM ReservationEquipment WHERE reservation_id = ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = null;
+            pstmt.executeQuery();
+            rs = pstmt.getResultSet();
+            while (rs.next()) {
+                cb = new ReservationEquipmentBean();
+                cb.setRid(rs.getInt("reservation_id"));
+                cb.setEid(rs.getInt("equipment_id"));
+                arrayList_cb.add(cb);
+            }
+            pstmt.close();
+            con.close();
+        } catch (SQLException ex) {
+            while (ex != null) {
+                ex.printStackTrace();
+                ex = ex.getNextException();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return arrayList_cb;
+    }
+        
+  
 }

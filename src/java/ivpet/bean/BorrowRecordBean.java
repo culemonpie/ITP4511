@@ -1,6 +1,7 @@
 package ivpet.bean;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class BorrowRecordBean implements Serializable {
     private int id;
@@ -79,5 +80,20 @@ public class BorrowRecordBean implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+    public String getStatusType() {
+        LocalDate d = LocalDate.parse(due_date);
+        LocalDate n = LocalDate.now();
+        
+        if(n.isAfter(d)){
+            if(return_date==null){
+            return "is overdue";}
+        }
+        if(status==0){
+        return "on lease";
+        }else if(status==1){
+        return "completed ";
+        }
+        return "";
     }
 }
