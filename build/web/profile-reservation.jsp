@@ -1,3 +1,10 @@
+<%@page import="ivpet.bean.EquipmentBean"%>
+<%@page import="ivpet.bean.ReservationEquipmentBean"%>
+<%@page import="ivpet.bean.BorrowRecordBean"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="ivpet.bean.ReservationRequestBean"%>
+<%@page import="ivpet.bean.UserBean"%>
+<%@page import="ivpet.db.AssignmentDB"%>
 <!DOCTYPE html>
 
 <%
@@ -42,86 +49,54 @@
 	    <div class="col-md-9">
 
 		<h4><%=title%></h4>
+<%     int i=  Integer.parseInt(session.getAttribute("id").toString());
+    AssignmentDB db = new AssignmentDB();
+    ArrayList<ReservationRequestBean> R=new ArrayList<ReservationRequestBean>();
+R=db.listAllReservationRequestBySub(i);
+//    ArrayList<BorrowRecordBean> BorrowRecordBean = db.QueryBorrowRecordById(i);
+    String item="";
 
-		<div class="card">
-		    <div class="card-body">
-			<h5>#R0002</h5>
-			<a href="${pageContext.request.contextPath}/reservation/view?id=2">View</a> | <a href="#">Edit</a>
+for(int j=0;j<R.size();j++){
+    ArrayList<ReservationEquipmentBean> ReservationEquipment = db.listReservationEquipmentByid(R.get(j).getId());
+    for(int k=0;k<ReservationEquipment.size();k++){
+        EquipmentBean Equipment = db.getEquipment(ReservationEquipment.get(k).geEid());
+    item+=Equipment.getname()+"<br>";
+    }
+    out.print( "<div class=\"card\">"+
+"		    <div class=\"card-body\">"+
+"			<h5>#"+R.get(j).getId()+"</h5>"+
+"			<a href=\""+request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/ITP4511/reservation/view?id="+R.get(j).getId()+"\">View</a> | <a href=\"#\">Edit</a>"+
+""+
+"			<div class=\"row\">"+
+"			    <div class=\"col-12 col-sm-6 col-md-4\">"+
+"				"+R.get(j).getsubmitted_by()+
+"			    </div>"+
+"			    <div class=\"col-12 col-sm-6 col-md-8\">"+
+"			    </div>"+
+"			</div>"+
+""+
+"			<div class=\"row\">"+
+"			    <div class=\"col-12 col-sm-6 col-md-4\">"+
+"				Status"+
+"			    </div>"+
+"			    <div class=\"col-12 col-sm-6 col-md-8\">"+
+"				"+R.get(j).gettype()+
+"			    </div>"+
+"			</div>"+
+""+
+"			<div class=\"row\">"+
+"			    <div class=\"col-12 col-sm-6 col-md-4\">"+
+"				Item"+
+"			    </div>"+
+"			    <div class=\"col-12 col-sm-6 col-md-8\">"+
+item+
 
-			<div class="row">
-			    <div class="col-12 col-sm-6 col-md-4">
-				Username
-			    </div>
-			    <div class="col-12 col-sm-6 col-md-8">
-				demo
-			    </div>
-			</div>
-
-			<div class="row">
-			    <div class="col-12 col-sm-6 col-md-4">
-				Status
-			    </div>
-			    <div class="col-12 col-sm-6 col-md-8">
-				Pending
-			    </div>
-			</div>
-
-			<div class="row">
-			    <div class="col-12 col-sm-6 col-md-4">
-				Item
-			    </div>
-			    <div class="col-12 col-sm-6 col-md-8">
-				HDMI Cable<br>
-				Projector<br>
-				Amplifier<br>
-			    </div>
-			</div>
-		    </div>
-		</div>
-
-		<div class="card mt-2">
-		    <div class="card-body">
-			<h5>#R0001</h5>
-			<a href="${pageContext.request.contextPath}/reservation/view?id=1">View</a> | <a href="#">Edit</a>
-
-			<div class="row">
-			    <div class="col-12 col-sm-6 col-md-4">
-				Username
-			    </div>
-			    <div class="col-12 col-sm-6 col-md-8">
-				demo
-			    </div>
-			</div>
-
-			<div class="row">
-			    <div class="col-12 col-sm-6 col-md-4">
-				Full name
-			    </div>
-			    <div class="col-12 col-sm-6 col-md-8">
-				Demo User
-			    </div>
-			</div>
-
-			<div class="row">
-			    <div class="col-12 col-sm-6 col-md-4">
-				Role
-			    </div>
-			    <div class="col-12 col-sm-6 col-md-8">
-				Student
-			    </div>
-			</div>
-
-			<div class="row">
-			    <div class="col-12 col-sm-6 col-md-4">
-				Student ID
-			    </div>
-			    <div class="col-12 col-sm-6 col-md-8">
-				31415926
-			    </div>
-			</div>
-
-		    </div>
-		</div>
+"			    </div>"+
+"			</div>"+
+"		    </div>"+
+"		</div>");
+}
+%>
 
 	    </div>
 	</div>

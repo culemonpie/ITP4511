@@ -1,3 +1,5 @@
+<%@page import="ivpet.bean.UserBean"%>
+<%@page import="ivpet.db.AssignmentDB"%>
 <!DOCTYPE html>
 
 <%
@@ -41,22 +43,17 @@
 	    </div>
 	    <div class="col-md-9">
 		<h1> <%=title%> </h1>
-
+<%     int i=  Integer.parseInt(session.getAttribute("id").toString());
+    AssignmentDB db = new AssignmentDB();
+    UserBean U=new UserBean();
+U=db.getUser(i);
+%>
 		<div class="row">
 		    <div class="col-12 col-sm-6 col-md-4">
 			Username
 		    </div>
 		    <div class="col-12 col-sm-6 col-md-8">
-			demo
-		    </div>
-		</div>
-
-		<div class="row">
-		    <div class="col-12 col-sm-6 col-md-4">
-			Full name
-		    </div>
-		    <div class="col-12 col-sm-6 col-md-8">
-			Demo User
+                        <% out.print(U.getUsername()); %>
 		    </div>
 		</div>
 
@@ -65,7 +62,7 @@
 			Role
 		    </div>
 		    <div class="col-12 col-sm-6 col-md-8">
-			Student
+			<% out.print(U.getRole()); %>
 		    </div>
 		</div>
 
@@ -74,7 +71,7 @@
 			Student ID
 		    </div>
 		    <div class="col-12 col-sm-6 col-md-8">
-			31415926
+			<% out.print(U.getId()); %>
 		    </div>
 		</div>
 
