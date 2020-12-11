@@ -74,7 +74,7 @@
                                 item += Equipment.getname() + "<br>";
                             }
                         }
-
+                        out.print("<form class=\"form-signin\" action=\"ReturnServlet\" method=\"GET\">");
                         for (int j = 0; j < LB.size(); j++) {
                             for (int k = 0; k < R.size(); k++) {
                                 if (LB.get(j).getId() == R.get(k).getId()) {
@@ -86,7 +86,9 @@
                                     out.print("</tr>");
                                 }
                             }
+
                         }
+                        out.print("</form>");
                     %>
 
 
